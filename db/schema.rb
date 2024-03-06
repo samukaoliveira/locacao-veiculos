@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_06_180839) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_06_204431) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string "nome"
+    t.string "email"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "clientes", force: :cascade do |t|
     t.string "nome"
@@ -43,6 +51,20 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_06_180839) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reservas", force: :cascade do |t|
+    t.bigint "veiculo_id", null: false
+    t.bigint "cliente_id", null: false
+    t.integer "tempo_espera"
+    t.decimal "valor_total"
+    t.datetime "dt_inicial"
+    t.datetime "dt_final"
+    t.boolean "pagamento_na_retirada"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cliente_id"], name: "index_reservas_on_cliente_id"
+    t.index ["veiculo_id"], name: "index_reservas_on_veiculo_id"
+  end
+
   create_table "veiculos", force: :cascade do |t|
     t.string "nome"
     t.string "cor"
@@ -56,5 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_06_180839) do
   end
 
   add_foreign_key "enderecos", "clientes"
+  add_foreign_key "reservas", "clientes"
+  add_foreign_key "reservas", "veiculos"
   add_foreign_key "veiculos", "marcas"
 end

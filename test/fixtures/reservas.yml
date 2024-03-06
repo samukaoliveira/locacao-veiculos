@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  veiculo: one
+  cliente: one
+  tempo_espera: 1
+  valor_total: 9.99
+  dt_inicial: 2024-03-06 16:54:42
+  dt_final: 2024-03-06 16:54:42
+  pagamento_na_retirada: false
+
+two:
+  veiculo: two
+  cliente: two
+  tempo_espera: 1
+  valor_total: 9.99
+  dt_inicial: 2024-03-06 16:54:42
+  dt_final: 2024-03-06 16:54:42
+  pagamento_na_retirada: false

@@ -1,4 +1,4 @@
-<%= form_with(model: endereco, url: cliente_enderecos_path) do |form| %>
+<%= form_with(model: [@cliente, @endereco]) do |form| %>
   <% if endereco.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(endereco.errors.count, "error") %> prohibited this endereco from being saved:</h2>

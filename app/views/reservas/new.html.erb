@@ -1,0 +1,9 @@
+<h1>New reserva</h1>
+
+<%= render "form", reserva: @reserva, veiculos: @veiculos, cliente: @cliente %>
+
+<br>
+
+<div>
+  <%= link_to "Back to reservas", cliente_reservas_path %>
+</div>

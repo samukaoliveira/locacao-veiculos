@@ -38,10 +38,10 @@ class EnderecosController < ApplicationController
 
   # PATCH/PUT /enderecos/1 or /enderecos/1.json
   def update
-    @endereco.cliente_id = @cliente.id
+    @endereco.id = @cliente.id
     respond_to do |format|
       if @endereco.update(endereco_params)
-        format.html { redirect_to endereco_url(@endereco), notice: "Endereco was successfully updated." }
+        format.html { redirect_to cliente_endereco_path(@cliente, @endereco), notice: "Endereco was successfully updated." }
         format.json { render :show, status: :ok, location: @endereco }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ class EnderecosController < ApplicationController
     @endereco.destroy
 
     respond_to do |format|
-      format.html { redirect_to enderecos_url, notice: "Endereco was successfully destroyed." }
+      format.html { redirect_to cliente_enderecos_path, notice: "Endereco was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -63,7 +63,8 @@ class EnderecosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_endereco
-      @endereco = Endereco.find(params[:id])
+      set_cliente
+      @endereco = @cliente.enderecos.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resources :admins
   resources :clientes do
     resources :enderecos
+    resources :reservas
   end
   resources :veiculos
   resources :marcas

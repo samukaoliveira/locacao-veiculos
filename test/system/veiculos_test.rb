@@ -15,7 +15,8 @@ class VeiculosTest < ApplicationSystemTestCase
     click_on "New veiculo"
 
     fill_in "Cor", with: @veiculo.cor
-    fill_in "Marca", with: @veiculo.marca
+    fill_in "Marca", with: @veiculo.marca_id
+    fill_in "Nome", with: @veiculo.nome
     fill_in "Placa", with: @veiculo.placa
     fill_in "Qnt passageiros", with: @veiculo.qnt_passageiros
     click_on "Create Veiculo"
@@ -29,7 +30,8 @@ class VeiculosTest < ApplicationSystemTestCase
     click_on "Edit this veiculo", match: :first
 
     fill_in "Cor", with: @veiculo.cor
-    fill_in "Marca", with: @veiculo.marca
+    fill_in "Marca", with: @veiculo.marca_id
+    fill_in "Nome", with: @veiculo.nome
     fill_in "Placa", with: @veiculo.placa
     fill_in "Qnt passageiros", with: @veiculo.qnt_passageiros
     click_on "Update Veiculo"

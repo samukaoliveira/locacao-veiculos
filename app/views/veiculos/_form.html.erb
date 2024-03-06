@@ -12,8 +12,8 @@
   <% end %>
 
   <div>
-    <%= form.label :marca, style: "display: block" %>
-    <%= form.text_field :marca %>
+    <%= form.label :nome, style: "display: block" %>
+    <%= form.text_field :nome %>
   </div>
 
   <div>
@@ -29,6 +29,11 @@
   <div>
     <%= form.label :placa, style: "display: block" %>
     <%= form.text_field :placa %>
+  </div>
+
+  <div>
+    <%= form.label :marca_id, style: "display: block" %>
+    <%= form.collection_select :marca_id, @marcas, :id, :nome %>
   </div>
 
   <div>

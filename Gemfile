@@ -33,6 +33,8 @@ gem 'bootstrap', '~> 5.0'
 
 gem 'sassc-rails'
 
+gem 'rails-i18n', '~> 7.0.0'
+
 
 
 # Use Redis adapter to run Action Cable in production

@@ -1,5 +1,6 @@
 class VeiculosController < ApplicationController
   before_action :set_veiculo, only: %i[ show edit update destroy ]
+  before_action :load_marcas
 
   # GET /veiculos or /veiculos.json
   def index
@@ -65,6 +66,10 @@ class VeiculosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def veiculo_params
-      params.require(:veiculo).permit(:marca, :cor, :qnt_passageiros, :placa)
+      params.require(:veiculo).permit(:nome, :cor, :qnt_passageiros, :placa, :marca_id)
+    end
+
+    def load_marcas
+      @marcas = Marca.all
     end
 end

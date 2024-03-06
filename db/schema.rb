@@ -10,9 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_06_164507) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_06_180839) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clientes", force: :cascade do |t|
+    t.string "nome"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "cpf"
+  end
+
+  create_table "enderecos", force: :cascade do |t|
+    t.string "logradouro"
+    t.string "complemento"
+    t.integer "numero"
+    t.string "bairro"
+    t.string "cidade"
+    t.string "uf"
+    t.bigint "cliente_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "cep"
+    t.index ["cliente_id"], name: "index_enderecos_on_cliente_id"
+  end
 
   create_table "marcas", force: :cascade do |t|
     t.string "nome"
@@ -29,8 +51,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_06_164507) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "qnt_passageiros"
+    t.decimal "valor"
     t.index ["marca_id"], name: "index_veiculos_on_marca_id"
   end
 
+  add_foreign_key "enderecos", "clientes"
   add_foreign_key "veiculos", "marcas"
 end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'login_admin', to: 'login_admin#login'
+  post 'login_admin', to: 'login_admin#logar'
   resources :admins
   resources :clientes do
     resources :enderecos

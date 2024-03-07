@@ -1,6 +1,12 @@
 class AdminsController < ApplicationController
   before_action :set_admin, only: %i[ show edit update destroy ]
 
+  def authenticate_admin!
+    if coockies[:administrador].blank?
+      redirect_to '/login'
+    end
+  end
+
   # GET /admins or /admins.json
   def index
     @admins = Admin.all

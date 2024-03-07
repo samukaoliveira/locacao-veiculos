@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
+  get 'loja/index', to: 'loja#index'
+  root 'loja#index'
   get 'login_admin', to: 'login_admin#login'
   post 'logar_admin', to: 'login_admin#logar'
   get 'logout_admin', to: 'login_admin#logout'
   resources :admins
+  resources :reservas, only: [:index, :show]
   resources :clientes do
     resources :enderecos
-    resources :reservas
   end
+  get 'login_cliente', to: 'login_cliente#cliente_login'
+  post 'logar_cliente', to: 'login_cliente#cliente_logar'
+  get 'logout_cliente', to: 'login_cliente#cliente_logout'
+  get 'recovery_cliente', to: 'login_cliente#cliente_recovery'
+  post 'recovery_send', to: 'login_cliente#recovery_send'
+  resources :reservas
   resources :veiculos
   resources :marcas
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

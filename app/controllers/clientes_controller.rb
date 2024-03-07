@@ -1,5 +1,13 @@
 class ClientesController < ApplicationController
+  layout 'loja'
   before_action :set_cliente, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[ show edit update destroy]
+
+  def authenticate_user!
+    if cookies[:cliente].blank?
+      redirect_to '/login_cliente'
+    end
+  end
 
   # GET /clientes or /clientes.json
   def index

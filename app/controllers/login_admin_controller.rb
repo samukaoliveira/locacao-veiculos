@@ -4,7 +4,6 @@ class LoginAdminController < ApplicationController
   end
 
   def logar
-    debugger
     admin = Admin.login(params[:email], params[:password])
     if admin.present?
       cookies[:admin] = admin.nome

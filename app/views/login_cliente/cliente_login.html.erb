@@ -1,0 +1,29 @@
+<div class="col-md-6 offset-md-3 text-center text-danger h-10 d-inline-block">
+    <%= notice %>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="card rounded-4 col-sm-6 offset-sm-3 col-md-4 offset-md-4 mt-5 shadow p-5">
+            <form class="form signin loginform text-danger" action="/logar_cliente" method="post">
+                <div class="text-center mb-4">
+                    <i class="bi bi-person fs-5"></i>
+                    <h1 class="h3 mb-3 font-wight-normal">Login Cliente</h1>
+                </div>
+
+                <div class="form-label-group mt-4">
+                    <label for="email">Login: </label>
+                    <input type="email" id="email" class="form-control mt-1" placeholder="Login" name="email">
+                </div>
+
+                <div class="form-label-group mt-4">
+                    <label for="email">Senha: </label>
+                    <input type="password" id="password" class="form-control mt-1" placeholder="Senha" name="password">
+                </div>
+
+                <button class="btn btn-danger h3 mb-3 font-wight-normal mt-4" type="submit">Entrar</button>
+            </form>
+
+            <%= link_to "Esqueci minha senha", recovery_cliente_path, class: "" %>
+        </div>
+    </div>
+</div>

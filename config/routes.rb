@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'login_admin', to: 'login_admin#login'
-  post 'login_admin', to: 'login_admin#logar'
+  post 'logar_admin', to: 'login_admin#logar'
+  get 'logout_admin', to: 'login_admin#logout'
   resources :admins
   resources :clientes do
     resources :enderecos

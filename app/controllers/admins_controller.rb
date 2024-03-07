@@ -1,9 +1,10 @@
 class AdminsController < ApplicationController
   before_action :set_admin, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin!
 
   def authenticate_admin!
-    if coockies[:administrador].blank?
-      redirect_to '/login'
+    if cookies[:admin].blank?
+      redirect_to '/login_admin'
     end
   end
 

@@ -1,15 +1,15 @@
 <div class="container">
     <div class="row mt-5">
         <div class="card rounded-4 col-sm-6 offset-sm-3 col-md-4 offset-md-4 mt-5 shadow p-5">
-            <div class="form signin loginform" action="/logar" method="post">
+            <form class="form signin loginform" action="/logar_admin" method="post">
                 <div class="text-center mb-4">
                     <i class="bi bi-person fs-5"></i>
-                    <h1 class="h3 mb-3 font-wight-normal">Login</h1>
+                    <h1 class="h3 mb-3 font-wight-normal">Login Admin</h1>
                 </div>
 
                 <div class="form-label-group mt-4">
                     <label for="email">Login: </label>
-                    <input type="email" id="login" class="form-control mt-1" placeholder="Login" name="login">
+                    <input type="email" id="email" class="form-control mt-1" placeholder="Login" name="email">
                 </div>
 
                 <div class="form-label-group mt-4">
@@ -17,8 +17,8 @@
                     <input type="password" id="password" class="form-control mt-1" placeholder="Senha" name="password">
                 </div>
 
-                <button class="btn btn-dark h3 mb-3 font-wight-normal mt-4">Entrar</button>
-            </div>
+                <button class="btn btn-dark h3 mb-3 font-wight-normal mt-4" type="submit">Entrar</button>
+            </form>
         </div>
     </div>
 </div>

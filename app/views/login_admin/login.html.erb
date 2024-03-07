@@ -1,5 +1,7 @@
-<div class="container">
-    <div class="row mt-5">
+<div class="col-md-6 offset-md-3 text-center text-danger h-10 d-inline-block">
+    <%= notice %>
+</div><div class="container">
+    <div class="row">
         <div class="card rounded-4 col-sm-6 offset-sm-3 col-md-4 offset-md-4 mt-5 shadow p-5">
             <form class="form signin loginform" action="/logar_admin" method="post">
                 <div class="text-center mb-4">
@@ -19,6 +21,9 @@
 
                 <button class="btn btn-dark h3 mb-3 font-wight-normal mt-4" type="submit">Entrar</button>
             </form>
+            <div class="text-end">
+                <%= link_to "Esqueci minha senha", recovery_admin_path %>
+            </div>
         </div>
     </div>
 </div>

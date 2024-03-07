@@ -9,6 +9,9 @@ class AdminsController < ApplicationController
   end
 
   # GET /admins or /admins.json
+  def initial
+  end
+
   def index
     @admins = Admin.all
   end

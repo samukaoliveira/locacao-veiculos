@@ -15,4 +15,14 @@ class LoginAdminController < ApplicationController
     cookies[:admin] = nil
     redirect_to '/login_admin'
   end
+
+  def admin_recovery
+  end
+
+  def recovery_send
+    email = params[:email]
+    if email.present?
+    redirect_to login_admin_path, notice: "Email enviado para #{email}"
+    end
+  end
 end

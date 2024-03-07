@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   get 'login_admin', to: 'login_admin#login'
   post 'logar_admin', to: 'login_admin#logar'
   get 'logout_admin', to: 'login_admin#logout'
+  get 'recovery_admin', to: 'login_admin#admin_recovery'
+  post 'recovery_send', to: 'login_admin#recovery_send'
   resources :admins
+  get 'admins_initial', to: 'admins#initial'
   resources :reservas, only: [:index, :show]
   resources :clientes do
     resources :enderecos

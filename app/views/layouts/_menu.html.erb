@@ -3,7 +3,11 @@
     <div class="justify-content-center">
       <table class="table">
         <td class="" >
-          <%= link_to "Home", admins_path, class:"nav-link d-inline #{ "text-secondary" unless controller.controller_name == 'admin'}" %>
+          <%= link_to "Loja", root_path, class:"nav-link d-inline #{ "text-secondary" unless controller.controller_name == 'loja'}" %>
+        </td>
+
+        <td class="" >
+          <%= link_to "Home", admins_initial_path, class:"nav-link d-inline #{ "text-secondary" unless current_page?(controller: 'admins', action: 'initial')}" %>
         </td>
 
         <td class="" >
@@ -23,11 +27,11 @@
         </td>
 
         <td class="" >
-          <%= link_to "Administradores", admins_path, class:"nav-link active #{ "text-secondary" unless controller.controller_name == 'admins'}" %>
+          <%= link_to "Administradores", admins_path, class:"nav-link active #{ "text-secondary" unless current_page?(controller: 'admins', action: 'index')}" %>
         </td>
 
         <td class="" >
-          <%= link_to "Sair", logout_admin_path, class:"nav-link active #{ "text-secondary" unless controller.controller_name == 'admin'}" %>
+          <%= link_to "Sair", logout_admin_path, class:"nav-link active text-secondary" %>
         </td>
       </table>
       <hr class="fs-5">

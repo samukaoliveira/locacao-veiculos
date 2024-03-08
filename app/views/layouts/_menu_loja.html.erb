@@ -1,26 +1,24 @@
 <div class="container">    
   <div class="row mt-3">  
-    <div class="justify-content-center">
-      <table class="table">
-        <td class="" >
-          <%= link_to "Home", root_path, class:"nav-link d-inline #{ "text-secondary" unless controller.controller_name == 'loja'}" %>
+    <div class="justify-content-center  gradient-bg diagonal-background rounded rounded-bottom-5">
+    <table class="table">
+    <td class="bg-transparent text-dark" >
+          <%= link_to "Home", root_path, class:" custom-a nav-link d-inline #{ "text-light" unless controller.controller_name == 'loja'}" %>
         </td>
 
-        <td class="" >
-          <%= link_to "Cadastrar", new_cliente_path, class:"nav-link active d-inline #{ "text-secondary" unless controller.controller_name == 'clientes'}" %>
+        <td class="bg-transparent text-dark" >
+          <%= link_to "Cadastrar", new_cliente_path, class:" custom-a nav-link active d-inline #{ "text-light" unless controller.controller_name == 'clientes'}" %>
         </td>
 
-        <td class="" >
-          <%= link_to "Login", login_cliente_path, class:"nav-link active d-inline #{ "text-secondary" unless controller.controller_name == 'login_cliente'}" %>
+        <td class="bg-transparent text-dark" >
+          <%= link_to "Login", login_cliente_path, class:" custom-a nav-link active d-inline #{ "text-light" unless controller.controller_name == 'login_cliente'}" %>
         </td>
 
 
-        <td class="" >
-          <%= link_to "Sair", logout_cliente_path, class:"nav-link active #{ "text-secondary" unless controller.controller_name == 'admin'}" %>
+        <td class="bg-transparent text-dark" >
+          <%= link_to "Sair", logout_cliente_path, class:" custom-a nav-link active #{ "text-light" unless controller.controller_name == 'admin'}" %>
         </td>
       </table>
-      <hr class="fs-5 fw-bold">
-      
     </div>
   </div>
 </div>

@@ -46,6 +46,11 @@
   </div>
 
   <div>
+    <%= form.label :imagem, style: "display: block" %>
+    <%= form.file_field :imagem %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

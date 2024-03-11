@@ -20,6 +20,11 @@
   </p>
 
   <p>
+    <strong>Ano:</strong>
+    <%= veiculo.ano %>
+  </p>
+
+  <p>
     <strong>Marca:</strong>
     <%= veiculo.marca.nome %>
   </p>
@@ -27,6 +32,11 @@
   <p>
     <strong>Valor:</strong>
     <%= veiculo.valor %>
+  </p>
+
+  <p>
+    <strong>Foto:</strong>
+    <%= no_image_check(veiculo, :mid1_thumb ) %>
   </p>
 
 </div>

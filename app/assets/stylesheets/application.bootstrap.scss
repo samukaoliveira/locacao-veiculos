@@ -2,3 +2,31 @@
 @import 'bootstrap-icons/font/bootstrap-icons';
 
 
+.diagonal-background {
+    position: relative;
+    width: 100%;
+    height: 170px;
+    background: linear-gradient(to bottom right, #dc3545, #fa9d9d);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 65%);
+  }
+
+  .diagonal-background-inverter {
+    position: relative;
+    width: 100%;
+    height: 170px;
+    background: linear-gradient(to bottom right, #dc3545, #fa9d9d);
+    clip-path: polygon(0 0, 100% 35%, 100% 100%, 0 100%);
+  }
+
+  .diagonal-border-cards {
+    position: relative;
+    background-color: #dc3545;
+    clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 97%);
+  }
+  
+  .diagonal-cards {
+    position: relative;
+    background-color: #faf7f7;
+    clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 97%);
+  }
+  

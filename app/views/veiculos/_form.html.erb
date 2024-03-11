@@ -32,6 +32,10 @@
   </div>
 
   <div>
+    <%= form.label :ano, style: "display: block" %>
+    <%= form.text_field :ano %>
+  </div>
+  <div>
     <%= form.label :marca_id, style: "display: block" %>
     <%= form.collection_select :marca_id, @marcas, :id, :nome %>
   </div>

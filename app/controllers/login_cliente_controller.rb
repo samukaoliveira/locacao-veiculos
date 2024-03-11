@@ -8,7 +8,10 @@ class LoginClienteController < ApplicationController
     cliente = Cliente.login(params[:email], params[:password])
     if cliente.present?
       cookies[:cliente] = cliente.nome
-      redirect_to '/clientes'
+      redirect_to clientes_path
+    else
+      flash[:alert] = 'Login falhou. Verifique suas credenciais.'
+      render :cliente_login
     end
   end
 

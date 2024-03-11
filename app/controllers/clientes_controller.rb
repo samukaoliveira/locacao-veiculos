@@ -33,7 +33,7 @@ class ClientesController < ApplicationController
 
     respond_to do |format|
       if @cliente.save
-        format.html { redirect_to cliente_url(@cliente), notice: "Cliente was successfully created." }
+        format.html { redirect_to "/", notice: "Cliente was successfully created." }
         format.json { render :show, status: :created, location: @cliente }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -73,6 +73,6 @@ class ClientesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cliente_params
-      params.require(:cliente).permit(:nome, :email, :cpf)
+      params.require(:cliente).permit(:nome, :email, :cpf, :password)
     end
 end

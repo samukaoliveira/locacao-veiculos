@@ -19,9 +19,19 @@
           <%= link_to "Sair", logout_cliente_path, class:" custom-a nav-link active #{ "text-light" unless controller.controller_name == 'admin'}" %>
         </td>
       </table>
-      <div class="mt-1 m-5">
-        <p class="text-light fs-7 text-end mt-3 mr-5 fs-1 titulos-car">Sam<i class="bi bi-car-front">Car</i></p>
-        <p class="text-light text-end fs-8">Aluguel de Veículos</p>
+      <div class="container">
+        <div class="row">
+          <div class="col-9">
+            <form class="form" action="/buscar" >
+              <input type="text" class="rounded border-0" placeholder="Buscar veículos...">
+              <button type="submit" class="btn btn-warning">Pesquisar</button>
+            </form>
+          </div>
+          <div class="col-3 mt-1">
+            <p class="text-light fs-7 text-center fs-1 titulos-car">Sam<i class="bi bi-car-front">Car</i></p>
+            <p class="text-light fs-8 text-center mn">Aluguel de Veículos</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

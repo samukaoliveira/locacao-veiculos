@@ -9,6 +9,7 @@ module ApplicationHelper
                             when :small_avatar then '100x60'
                             when :small_thumb then '150x90'
                             when :mid1_thumb then '200x120'
+                            when :mid2_thumb then '300x180'
                             when :big_thumb then '400x240'
                             else '150x90'
                             end

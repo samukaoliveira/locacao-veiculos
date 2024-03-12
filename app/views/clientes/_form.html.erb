@@ -36,15 +36,18 @@
                 <%= form.number_field :cpf, class: " form-control mt-1", placeholder: "CPF" %>
               </div>
 
-              <div>
-                <%= form.label "Senha: ", class: "signin loginform text-danger mt-4"  %>
-                <%= form.number_field :password, class: " form-control mt-1", placeholder: "Senha" %>
-              </div>
+              <% if controller_name == 'clientes_controller' && action_name == 'new' %>
+                <div>
+                  <%= form.label "Senha: ", class: "signin loginform text-danger mt-4"  %>
+                  <%= form.number_field :password, class: " form-control mt-1", placeholder: "Senha" %>
+                </div>
 
-              <div>
-                <%= form.label "Confirme a Senha: ", class: "signin loginform text-danger mt-4"  %>
-                <%= form.number_field :password_confirmation, class: " form-control mt-1", placeholder: "Confirme a Senha" %>
-              </div>
+                <div>
+                  <%= form.label "Confirme a Senha: ", class: "signin loginform text-danger mt-4"  %>
+                  <%= form.number_field :password_confirmation, class: " form-control mt-1", placeholder: "Confirme a Senha" %>
+                </div>
+
+              <% end %>
 
               <div>
                 <%= form.submit class: "btn btn-danger mt-4", id: "criar" %>

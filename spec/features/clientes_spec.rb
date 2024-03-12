@@ -131,13 +131,10 @@ RSpec.feature "Clientes", type: :feature, js: true do
     it "Edição bem-sucedida de clientes" do
 
       ActiveRecord::Base.connection.disable_referential_integrity do
-        admin = create(:admin)
-        marca = create(:marca)
-        cliente = create(:cliente)
-        
-        sleep(1)
-        visit(clientes_path(cliente))
-
+        login_test
+        sleep(2)
+        find('a', text: 'Show this cliente', wait: 1).click
+        sleep(2)
         find('a', text: 'Edit this cliente', wait: 1).click
         sleep(1)
         20.times do
@@ -156,24 +153,22 @@ RSpec.feature "Clientes", type: :feature, js: true do
     it "Edição mau-sucedida de cliente" do
 
       ActiveRecord::Base.connection.disable_referential_integrity do
-        admin = create(:admin)
-        marca = create(:marca)
-        cliente = create(:cliente, marca_id: marca.id)
-        
-        sleep(1)
-        visit(cliente_path(cliente))
-
+        login_test
+        sleep(2)
+        find('a', text: 'Show this cliente', wait: 1).click
         sleep(2)
         find('a', text: 'Edit this cliente', wait: 1).click
-        sleep(2)
+        sleep(1)
         20.times do
           find('input#cliente_nome').send_keys(:backspace)
         end
         sleep(1)
-        find('.btn').click
+        find('input#cliente_nome').send_keys("Fulano de Tal")
+        sleep(1)
+        find('input#criar').click
         sleep(2)
 
-        expect(page).to have_content("Nome não pode ficar em branco")
+        expect(page).to have_content("Password não pode ficar em branco")
       end
     end
 

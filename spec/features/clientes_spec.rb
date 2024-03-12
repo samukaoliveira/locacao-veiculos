@@ -14,6 +14,42 @@ RSpec.feature "Clientes", type: :feature, js: true do
     # ... outras configurações ...
   end
 
+  def login_test
+    cliente = create(:cliente, email: "usuario@teste.com", password: "senha123", password_confirmation: "senha123")
+
+      visit(login_cliente_path)
+      find('input#email').send_keys('usuario@teste.com')
+      find('input#password').send_keys('senha123')
+      find('button#login').click
+  end
+
+
+  context "Login" do
+    it "Cliente faz login com sucesso" do
+      login_test
+      
+      expect(page).to have_content 'Nome'
+    end
+
+    it "Buscar Clientes com successo" do
+
+      ActiveRecord::Base.connection.disable_referential_integrity do
+        login_test
+        
+        
+        # nomes_especificos = ["Gragoatá", "Praia Vermelha", "Valonguinho", "Reitoria", "Farmácia"]
+        # FactoryBot.create_list(:unidade, 5, nomes_especificos: nomes_especificos)
+  
+        
+        sleep(2)
+        visit(clientes_path)
+        sleep(2)
+        expect(page).to have_content("Nome")
+        sleep(2)
+      end
+    end
+  end
+
   context "CRUD de clientes" do
     it "Cadastro bem-sucedido de clientes" do
 
@@ -70,26 +106,20 @@ RSpec.feature "Clientes", type: :feature, js: true do
       ActiveRecord::Base.connection.disable_referential_integrity do
         admin = create(:admin)
         marca = create(:marca)
-        cliente = create(:cliente, marca_id: marca.id)
+        cliente = create(:cliente)
         
         sleep(1)
-        visit(cliente_path(cliente))
+        visit(clientes_path(cliente))
 
-        sleep(2)
         find('a', text: 'Edit this cliente', wait: 1).click
-        sleep(2)
+        sleep(1)
         20.times do
           find('input#cliente_nome').send_keys(:backspace)
         end
         sleep(1)
-        find('input#cliente_nome').send_keys("F-50")
-        20.times do
-          find('input#cliente_cor').send_keys(:backspace)
-        end
+        find('input#cliente_nome').send_keys("Fulano de Tal")
         sleep(1)
-        find('input#cliente_cor').send_keys("vermelho")
-        sleep(1)
-        find('.btn').click
+        find('input#criar').click
         sleep(2)
 
         expect(page).to have_content("cliente was successfully updated")

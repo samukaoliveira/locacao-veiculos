@@ -9,6 +9,9 @@ class LojaController < ClientesController
     end
   end
 
+  def veiculo
+
+  end
 
 
 

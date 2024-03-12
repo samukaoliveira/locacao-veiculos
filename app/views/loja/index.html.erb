@@ -7,13 +7,15 @@
         <% @veiculos.each do |veiculo| %>
 
             <div class="rounded col-sm-2 sombra">
-                <div class="rounded diagonal-cards text-center pt-4">
-                    <p class="titulos-car"><%= veiculo.nome %> <%= veiculo.ano %></p>
-                    <p class="fw-bold">R$ <%= veiculo.valor %></p>
-                    <%= no_image_check(veiculo, :mid2_thumb) %>
-                </div>
+                <%= link_to loja_veiculo_path(veiculo), class: "nav-link" do %>
+                    <div class="rounded diagonal-cards text-center pt-4">
+                        <p class="titulos-car"><%= veiculo.nome %> <%= veiculo.ano %></p>
+                        <p class="fw-bold"><%= number_to_currency(veiculo.valor) %></p>
+                        <%= no_image_check(veiculo, :mid2_thumb) %>
+                    </div>
+                <% end %>
             </div>
-
+            
         <% end %>
 
         

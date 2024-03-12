@@ -1,0 +1,38 @@
+<div class="text-center text-danger h-10 d-inline-block">
+    <%= notice %>
+</div>
+<div class="container carrosel-cars">
+    <div class="row justify-content-center">
+
+        <% @veiculo %>
+
+            <div class="rounded col-sm-5 sombra">
+                <div class="rounded diagonal-cards text-center pt-4">
+                    <p class="titulos-car h3"><%= @veiculo.nome %></p>
+                    <%= no_image_check(@veiculo, :big_thumb) %>
+                </div>
+            </div>
+
+            <div class="rounded col-sm-5 sombra">
+                <div class="container rounded diagonal-cards p-4">
+                    <div class="row">
+                        <p class="col-8 fw-bold d-inline">Quantidade de passageiros:&nbsp&nbsp </p><p class="col-3 d-inline"> <%= @veiculo.qnt_passageiros %></p>
+                    </div>
+                    <div class="row">
+                        <p class="col-8 fw-bold d-inline-block">Valor da diária:&nbsp&nbsp  </p><p class="col-3 d-inline-block"><%= number_to_currency(@veiculo.valor) %></p>
+                    </div>
+                    <div class="row">
+                        <p class="col-8 fw-bold d-inline-block">Ano:&nbsp&nbsp  </p><p class="col-3 d-inline-block"><%= @veiculo.ano %></p>
+                    </div>
+                    <div class="row">
+                        <p class="col-8 fw-bold d-inline-block">Disponível:&nbsp&nbsp  </p><p class="col-3 d-inline-block"><% %></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-4">
+                <%= link_to "Voltar", '/', class: "col-2 btn btn-secondary" %>
+            </div>
+        
+    </div>
+</div>

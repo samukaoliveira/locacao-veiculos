@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'loja/index', to: 'loja#index'
+  get 'loja/veiculo/:id', to: 'loja#veiculo', as: 'loja_veiculo'
   root 'loja#index'
   get 'login_admin', to: 'login_admin#login'
   post 'logar_admin', to: 'login_admin#logar'

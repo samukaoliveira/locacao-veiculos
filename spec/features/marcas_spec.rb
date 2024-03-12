@@ -70,7 +70,7 @@ RSpec.feature "Marcas", type: :feature, js: true do
   end
 
   context "CRUD de marcas" do
-    it "Cadastro de marca" do
+    it "Cadastro bem-sucedido de marca" do
 
       ActiveRecord::Base.connection.disable_referential_integrity do
         admin = create(:admin)
@@ -91,7 +91,26 @@ RSpec.feature "Marcas", type: :feature, js: true do
       end
     end
 
-    it "Edição de marca" do
+    it "Cadastro mau-sucedido de marca" do
+
+      ActiveRecord::Base.connection.disable_referential_integrity do
+        admin = create(:admin)
+        
+        sleep(1)
+        visit(marcas_path)
+
+        find('a', text: 'New marca', wait: 1).click
+        sleep(1)
+        find('input#marca_sigla').send_keys("F")
+        sleep(1)
+        find('.btn').click
+        sleep(2)
+
+        expect(page).to have_content("Nome não pode ficar em branco")
+      end
+    end
+
+    it "Edição bem-sucedida de marca" do
 
       ActiveRecord::Base.connection.disable_referential_integrity do
         admin = create(:admin)
@@ -112,6 +131,64 @@ RSpec.feature "Marcas", type: :feature, js: true do
         sleep(2)
 
         expect(page).to have_content("Ferrari")
+      end
+    end
+
+    it "Edição mau-sucedida de marca" do
+
+      ActiveRecord::Base.connection.disable_referential_integrity do
+        admin = create(:admin)
+        marca = create(:marca)
+        
+        sleep(1)
+        visit(marca_path(marca))
+
+        sleep(2)
+        find('a', text: 'Edit this marca', wait: 1).click
+        sleep(2)
+        20.times do
+          find('input#marca_nome').send_keys(:backspace)
+        end
+        sleep(1)
+        find('.btn').click
+        sleep(2)
+
+        expect(page).to have_content("Nome não pode ficar em branco")
+      end
+    end
+
+    it "Exclusão não permitida de marca ja itulizada em cadastro de veículos" do
+
+      ActiveRecord::Base.connection.disable_referential_integrity do
+        admin = create(:admin)
+        marca = create(:marca)
+        veiculo = create(:veiculo, marca_id: marca.id)
+        
+        sleep(1)
+        visit(marca_path(marca))
+
+        sleep(2)
+        find('button.btn').click
+        sleep(2)
+
+        expect(page).to have_content("Não é possivel excluir")
+      end
+    end
+
+    it "Exclusão permitida de marca" do
+
+      ActiveRecord::Base.connection.disable_referential_integrity do
+        admin = create(:admin)
+        marca = create(:marca)
+        
+        sleep(1)
+        visit(marca_path(marca))
+
+        sleep(2)
+        find('button.btn').click
+        sleep(2)
+
+        expect(page).to have_content("Marca was successfully destroyed")
       end
     end
   end

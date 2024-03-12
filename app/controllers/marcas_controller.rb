@@ -1,5 +1,6 @@
 class MarcasController < ApplicationController
   before_action :set_marca, only: %i[ show edit update destroy ]
+  before_action :set_veiculos
 
   # GET /marcas or /marcas.json
   def index
@@ -49,18 +50,27 @@ class MarcasController < ApplicationController
 
   # DELETE /marcas/1 or /marcas/1.json
   def destroy
-    @marca.destroy
-
-    respond_to do |format|
-      format.html { redirect_to marcas_url, notice: "Marca was successfully destroyed." }
-      format.json { head :no_content }
+    @veiculos_marca = @veiculos.where(marca_id: @marca.id)
+    if @veiculos_marca.empty?
+      @marca.destroy
+      respond_to do |format|
+        format.html { redirect_to marcas_url, notice: "Marca was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    else
+      redirect_back fallback_location: root_path, notice: "Não é possivel excluir, Marca possui veículos associados a ela."
     end
+
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_marca
       @marca = Marca.find(params[:id])
+    end
+
+    def set_veiculos
+      @veiculos = Veiculo.all
     end
 
     # Only allow a list of trusted parameters through.

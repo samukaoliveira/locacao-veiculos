@@ -10,8 +10,7 @@ class LoginClienteController < ApplicationController
       cookies[:cliente] = cliente.nome
       redirect_to clientes_path
     else
-      flash[:alert] = 'Login falhou. Verifique suas credenciais.'
-      render :cliente_login
+      redirect_to login_cliente_path, notice: "Email e/ou senha inválidos"
     end
   end
 
@@ -23,10 +22,10 @@ class LoginClienteController < ApplicationController
   def cliente_recovery
   end
 
-  def recovery_send
+  def cliente_recovery_send
     email = params[:email]
     if email.present?
-    redirect_to login_cliente_path, notice: "Email enviado para #{email}"
+      redirect_to login_cliente_path, notice: "Email enviado para #{email}"
     end
   end
 end

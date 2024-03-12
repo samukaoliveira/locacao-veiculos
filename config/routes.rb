@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   post 'logar_cliente', to: 'login_cliente#cliente_logar'
   get 'logout_cliente', to: 'login_cliente#cliente_logout'
   get 'recovery_cliente', to: 'login_cliente#cliente_recovery'
-  post 'recovery_send', to: 'login_cliente#recovery_send'
+  post 'cliente_recovery_send', to: 'login_cliente#cliente_recovery_send'
   resources :reservas
   resources :veiculos
   resources :marcas

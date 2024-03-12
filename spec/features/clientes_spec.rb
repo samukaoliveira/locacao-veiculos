@@ -14,12 +14,12 @@ RSpec.feature "Clientes", type: :feature, js: true do
     # ... outras configurações ...
   end
 
-  def login_test
+  def login_test(password= "senha123")
     cliente = create(:cliente, email: "usuario@teste.com", password: "senha123", password_confirmation: "senha123")
 
       visit(login_cliente_path)
       find('input#email').send_keys('usuario@teste.com')
-      find('input#password').send_keys('senha123')
+      find('input#password').send_keys(password)
       find('button#login').click
   end
 
@@ -29,6 +29,33 @@ RSpec.feature "Clientes", type: :feature, js: true do
       login_test
       
       expect(page).to have_content 'Nome'
+    end
+
+    it "Cliente faz login e logout com sucesso" do
+      login_test
+      
+      find('a', text: "Sair").click
+      expect(page).to have_content 'Login Cliente'
+    end
+
+    it "Cliente faz login mau-sucedido" do
+      login_test("654")
+      
+      expect(page).to have_content 'Email e/ou senha inválidos'
+    end
+
+    it "Cliente solicita recuperação de email" do
+
+      visit(login_cliente_path)
+      sleep(2)
+      find('a', text: "Esqueci minha senha").click
+      sleep(1)
+      find('input#email').send_keys('usuario@teste.com')
+      sleep(1)
+      find('button#recuperar').click
+      sleep(1)
+      
+      expect(page).to have_content 'Email enviado para usuario@teste.com'
     end
 
     it "Buscar Clientes com successo" do

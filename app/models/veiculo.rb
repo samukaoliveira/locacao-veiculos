@@ -1,4 +1,7 @@
 class Veiculo < ApplicationRecord
+
+  validates :nome, :cor, :qnt_passageiros, :placa, :ano, :marca_id, presence: true
+
   belongs_to :marca
   has_one_attached :imagem do |attachable|
     attachable.variant :cart_avatar, resize_to_limit: [45, 27]

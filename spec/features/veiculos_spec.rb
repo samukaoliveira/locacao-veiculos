@@ -90,7 +90,7 @@ RSpec.feature "Veiculos", type: :feature, js: true do
         sleep(1)
         find('input#veiculo_placa').send_keys("CDS-2A24")
         sleep(1)
-        find('input#veiculo_ano').send_keys("2024-01-24")
+        find('input#veiculo_ano').send_keys("2024")
         sleep(1)
         find('input#veiculo_valor').send_keys(899.90)
         sleep(1)
@@ -105,15 +105,24 @@ RSpec.feature "Veiculos", type: :feature, js: true do
 
       ActiveRecord::Base.connection.disable_referential_integrity do
         admin = create(:admin)
-        marca = create(:marca)
-        
+        marca1 = create(:marca)
+        marca2 = create(:marca)
+        marca3 = create(:marca)
         
         sleep(1)
-        visit(marcas_path)
+        visit(veiculos_path)
 
         find('a', text: 'New veiculo', wait: 1).click
         sleep(1)
-        find('input#marca_sigla').send_keys("F")
+        find('input#veiculo_cor').send_keys("vermelho")
+        sleep(1)
+        find('input#veiculo_qnt_passageiros').send_keys(3)
+        sleep(1)
+        find('input#veiculo_placa').send_keys("CDS-2A24")
+        sleep(1)
+        find('input#veiculo_ano').send_keys("2024")
+        sleep(1)
+        find('input#veiculo_valor').send_keys(899.90)
         sleep(1)
         find('.btn').click
         sleep(2)
@@ -130,20 +139,26 @@ RSpec.feature "Veiculos", type: :feature, js: true do
         veiculo = create(:veiculo, marca_id: marca.id)
         
         sleep(1)
-        visit(marca_path(marca))
+        visit(veiculo_path(veiculo))
 
         sleep(2)
         find('a', text: 'Edit this veiculo', wait: 1).click
         sleep(2)
         20.times do
-          find('input#marca_nome').send_keys(:backspace)
+          find('input#veiculo_nome').send_keys(:backspace)
         end
-        find('input#marca_nome').send_keys("Ferrari")
+        sleep(1)
+        find('input#veiculo_nome').send_keys("F-50")
+        20.times do
+          find('input#veiculo_cor').send_keys(:backspace)
+        end
+        sleep(1)
+        find('input#veiculo_cor').send_keys("vermelho")
         sleep(1)
         find('.btn').click
         sleep(2)
 
-        expect(page).to have_content("Ferrari")
+        expect(page).to have_content("Veiculo was successfully updated")
       end
     end
 
@@ -155,13 +170,13 @@ RSpec.feature "Veiculos", type: :feature, js: true do
         veiculo = create(:veiculo, marca_id: marca.id)
         
         sleep(1)
-        visit(marca_path(marca))
+        visit(veiculo_path(veiculo))
 
         sleep(2)
         find('a', text: 'Edit this veiculo', wait: 1).click
         sleep(2)
         20.times do
-          find('input#marca_nome').send_keys(:backspace)
+          find('input#veiculo_nome').send_keys(:backspace)
         end
         sleep(1)
         find('.btn').click

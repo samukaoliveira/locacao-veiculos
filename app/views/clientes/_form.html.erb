@@ -37,7 +37,17 @@
               </div>
 
               <div>
-                <%= form.submit class: "btn btn-danger mt-4" %>
+                <%= form.label "Senha: ", class: "signin loginform text-danger mt-4"  %>
+                <%= form.number_field :password, class: " form-control mt-1", placeholder: "Senha" %>
+              </div>
+
+              <div>
+                <%= form.label "Confirme a Senha: ", class: "signin loginform text-danger mt-4"  %>
+                <%= form.number_field :password_confirmation, class: " form-control mt-1", placeholder: "Confirme a Senha" %>
+              </div>
+
+              <div>
+                <%= form.submit class: "btn btn-danger mt-4", id: "criar" %>
               </div>
             <% end %>
         </div>

@@ -1,5 +1,7 @@
 class LojaController < ClientesController
   before_action :set_veiculo, except: :index
+  after_action :capturar_destino
+  before_action :authenticate_user!, only: %i[ aluguel locacao ]
 
   def index
     if params[:nome].present?
@@ -15,12 +17,14 @@ class LojaController < ClientesController
   def aluguel
   end
 
-
-
-
-
+  def locacao
+  end
 
   private
+
+  def capturar_destino
+    session[:return_to] = request.fullpath
+  end
 
     def set_veiculo
       @veiculo = Veiculo.find(params[:id])

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'loja/index', to: 'loja#index'
   get 'loja/veiculo/:id', to: 'loja#veiculo', as: 'loja_veiculo'
   get 'loja/aluguel/:id', to: 'loja#aluguel', as: 'loja_aluguel'
+  get 'loja/locacao/:id', to: 'loja#locacao', as: 'loja_locacao'
   root 'loja#index'
   get 'login_admin', to: 'login_admin#login'
   post 'logar_admin', to: 'login_admin#logar'

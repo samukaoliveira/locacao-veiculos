@@ -2,22 +2,32 @@
   <div class="row mt-3">  
     <div class="justify-content-center  gradient-bg diagonal-background rounded rounded-bottom-5">
       <table class="table">
-        <td class="bg-transparent text-dark" >
-              <%= link_to "Home", root_path, class:" custom-a nav-link d-inline #{ "text-light" unless controller.controller_name == 'loja'}" %>
-        </td>
 
-        <td class="bg-transparent text-dark" >
-          <%= link_to "Cadastrar", new_cliente_path, class:" custom-a nav-link active d-inline #{ "text-light" unless controller.controller_name == 'clientes'}" %>
-        </td>
+        <%= menu_item("Home", root_path, "loja") %>
 
-        <td class="bg-transparent text-dark" >
-          <%= link_to "Login", login_cliente_path, class:" custom-a nav-link active d-inline #{ "text-light" unless controller.controller_name == 'login_cliente'}" %>
-        </td>
+        <%= menu_item("Promoções", root_path, "login_cliente") %>
+
+        <%= menu_item("Políticas de Segurança", root_path, "login_cliente") %>
+
+        <%= menu_item("Veículos", root_path, "login_cliente") %>
+
+      <% if cookies[:cliente].present? %>
+
+        <%= menu_item("Perfil", edit_cliente_path(@cliente), "clientes") %>
+
+        <%= menu_item("Minhas Reservas", reservas_path, "login_cliente") %>
+
+        <%= menu_item("Sair", logout_cliente_path, "admin") %>
+
+      <% else %>
+
+        <%= menu_item("Cadastrar", new_cliente_path, "clientes") %>
+
+        <%= menu_item("Login", login_cliente_path, "login_cliente") %>
+
+      <% end %>
 
 
-        <td class="bg-transparent text-dark" >
-          <%= link_to "Sair", logout_cliente_path, class:" custom-a nav-link active #{ "text-light" unless controller.controller_name == 'admin'}" %>
-        </td>
       </table>
       <div class="container">
         <div class="row">

@@ -1,5 +1,6 @@
 class LojaController < ClientesController
   before_action :set_veiculo, except: :index
+  before_action :set_cliente_cookie
   after_action :capturar_destino
   before_action :authenticate_user!, only: %i[ aluguel locacao ]
 
@@ -22,13 +23,19 @@ class LojaController < ClientesController
 
   private
 
-  def capturar_destino
-    session[:return_to] = request.fullpath
-  end
+    def capturar_destino
+      session[:return_to] = request.fullpath
+    end
 
     def set_veiculo
       @veiculo = Veiculo.find(params[:id])
     end
+    
+    def set_cliente_cookie
+      cliente_info = JSON.parse(cookies[:cliente])
+      cliente_id = cliente_info['id']
 
+      @cliente = Cliente.find(cliente_id) unless cookies[:cliente].empty?
+    end
 
 end

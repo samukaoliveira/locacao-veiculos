@@ -6,7 +6,7 @@
         <div class="card rounded-4 col-sm-6 offset-sm-3 col-md-4 offset-md-4 shadow p-5">
             <div class="text-center mb-4 signin loginform text-danger">
                 <i class="bi bi-person fs-5"></i>
-                <h1 class="h3 mb-3 font-wight-normal">Novo Cadastro</h1>
+                <h1 class="h3 mb-3 font-wight-normal"><%= tipo_form %></h1>
             </div>
             <%= form_with(model: cliente, class: "signin loginform") do |form| %>
               <% if cliente.errors.any? %>

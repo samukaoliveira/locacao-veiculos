@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <%= render 'layouts/menu_loja' %>
+    <%= render 'layouts/menu_loja', locals: { cliente: @cliente } %>
     <%= yield %>
     <%= render 'layouts/rodape_loja' %>
   </body>

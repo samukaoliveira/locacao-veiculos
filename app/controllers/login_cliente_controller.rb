@@ -8,7 +8,7 @@ class LoginClienteController < ApplicationController
   def cliente_logar
     cliente = Cliente.login(params[:email], params[:password])
     if cliente.present?
-      cookies[:cliente] = cliente.nome
+      cookies[:cliente] = { id: cliente.id, nome: cliente.nome }.to_json
       destino = session[:return_to] || root_path
       debugger
       redirect_to destino

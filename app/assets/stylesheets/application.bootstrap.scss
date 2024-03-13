@@ -3,40 +3,54 @@
 
 
 .diagonal-background {
-    position: relative;
-    width: 100%;
-    height: 170px;
-    background: linear-gradient(to bottom right, #dc3545, #fa9d9d);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 65%);
-  }
+  position: relative;
+  width: 100%;
+  height: 170px;
+  background: linear-gradient(to bottom right, #dc3545, #fa9d9d);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 65%);
+}
 
-  .diagonal-background-inverter {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 170px;
-    background: linear-gradient(to bottom right, #dc3545, #fa9d9d);
-    clip-path: polygon(0 0, 100% 35%, 100% 100%, 0 100%);
-  }
+.diagonal-background-inverter {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 170px;
+  background: linear-gradient(to bottom right, #fa9d9d, #dc3545);
+  clip-path: polygon(0 0, 100% 35%, 100% 100%, 0 100%);
+}
 
-  .diagonal-border-cards {
-    position: relative;
-    background-color: #dc3545;
-    clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 97%);
-  }
-  
-  .diagonal-cards {
-    position: relative;
-    background-color: #faf7f7;
-    clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 97%);
-  }
-  
-  .mn {
-    margin-top: -18px;
-    position: relative;
-  }
+.diagonal-border-cards {
+  position: relative;
+  background-color: #dc3545;
+  clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 97%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 
-  .sombra:hover .diagonal-cards:hover {
-    margin-top: -15px;
-    position: relative;
-  }
+.sombra, .sb-datalhes{
+  filter: drop-shadow(0 10px 10px #050505);
+}
+
+.diagonal-cards, .diag-cards-datalhes {
+  position: relative;
+  background-color: #faf7f7;
+  width: 95%;
+  clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 97%);
+}
+
+.titulos-car {
+  font-family: Impact, fantasy;
+}
+
+.mn {
+  margin-top: -18px;
+  position: relative;
+}
+
+.sombra:hover .diagonal-cards:hover {
+  margin-top: -15px;
+  position: relative;
+}
+
+.carrosel-cars {
+  min-height: 300px; 
+}

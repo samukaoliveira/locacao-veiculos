@@ -37,6 +37,7 @@
                                 </td>
                                 <td>
                                     <%= number_to_currency(@veiculo.valor) %>
+                                    <input type="hidden" id="valorDiaria" value="<%= @veiculo.valor %>">
                                 </td>
                                 <td>
                                     <%= @veiculo.ano %>
@@ -48,10 +49,13 @@
                                     <i class="bi bi-check-lg text-primary fs-5"></i>
                                 </td>
                                 <td>
-                                    <input type="checkbox" checked>
+                                    <select id="seguroExtra" name="seguroExtra" onchange="atualizaTotais();">
+                                        <option value="1">Sim</option>
+                                        <option value="2">Não</option>
+                                    </select>
                                 </td>
                                 <td>
-                                    <select id="dias" name="dias">
+                                    <select id="qtDias" name="qtDias" onchange="atualizaTotais();">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -70,14 +74,14 @@
                                         Subtotal de diárias
                                     </td>
                                     <td colspan="2">
-                                        R$
+                                        R$ <span id="totalDiarias"></span>
                                     </td>
                                 <tr>
                                     <td colspan="5">
                                         Total de seguros
                                     </td>
                                     <td colspan="2">
-                                        R$
+                                        R$ <span id="totalSeguros"></span>
                                     </td>
 
                                 </tr>
@@ -86,7 +90,7 @@
                                         Valor total
                                     </td>
                                     <td colspan="2">
-                                        R$
+                                        R$ <span id="valorTotal"></span>
                                     </td>
 
                                 </tr>
@@ -119,3 +123,39 @@
         
     </div>
 </div>
+
+<script>
+
+    function atualizaTotais(){
+
+    const qtDias = document.getElementById("qtDias").value;
+    const valorDiaria = document.getElementById("valorDiaria").value;
+    const valorTotal = document.getElementById("valorTotal");
+    const totalSeguros = document.getElementById("totalSeguros");
+    const seguroExtra = document.getElementById("seguroExtra").value;
+    const totalDiarias = document.getElementById("totalDiarias");
+
+    
+    let somaSegExt = 0
+
+    if (seguroExtra == 1) {
+        somaSegExt = (parseInt(qtDias) * valorDiaria) * 0.08;
+    } 
+
+    let somaDiariass = parseInt(qtDias) * valorDiaria;
+    replaceDiarias = somaDiariass.toFixed(2);
+    totalDiarias.innerHTML = replaceDiarias.replace(".", ",");
+
+    let somaSeguros = (parseInt(qtDias) * valorDiaria) * 0.1;
+    replaceSeguros = somaSeguros.toFixed(2);
+    totalSeguros.innerHTML = replaceSeguros.replace(".", ",");
+
+    let somaTotal = (parseInt(qtDias) * valorDiaria) + somaSeguros + somaSegExt;
+    replaceTotal = somaTotal.toFixed(2);
+    valorTotal.innerHTML = replaceTotal.replace(".", ",");
+
+    }
+
+    atualizaTotais();
+
+</script>

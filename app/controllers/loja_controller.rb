@@ -10,9 +10,10 @@ class LojaController < ClientesController
   end
 
   def veiculo
-
   end
 
+  def aluguel
+  end
 
 
 

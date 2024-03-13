@@ -1,0 +1,121 @@
+<div class="text-center text-danger h-10 d-inline-block">
+    <%= notice %>
+</div>
+<div class="container carrosel-cars">
+    <div class="row justify-content-center">
+
+        <% @veiculo %>
+
+            <div class="rounded col-sm-3 sb-datalhes">
+                <div class="rounded diag-cards-datalhes text-center pt-4">
+                    <p class="titulos-car h3"><%= @veiculo.nome %></p>
+                    <%= no_image_check(@veiculo, :mid1_thumb) %>
+                </div>
+            </div>
+
+            <div class="col-sm-9 ">
+
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="rounded sb-datalhes">
+                            <div class="container rounded diag-cards-datalhes p-4">
+                                
+                                <table class="table">
+                                <tr>
+                                    <th>Max. de passageiros</th>
+                                    <th>Valor da diária</th>
+                                    <th>Ano</th>
+                                    <th>Disponível</th>
+                                    <th>Seguro Obrigatório</th>
+                                    <th>Seguro Extra/Vidros/Etc</th>
+                                    <th>Dias</th>
+                                </tr>
+                                <tr>
+                                <td><%= @veiculo.qnt_passageiros %>
+                                </td>
+                                <td>
+                                    <%= number_to_currency(@veiculo.valor) %>
+                                </td>
+                                <td>
+                                    <%= @veiculo.ano %>
+                                </td>
+                                <td>
+                                    <% %>
+                                </td>
+                                <td>
+                                    <i class="bi bi-check-lg text-primary fs-5"></i>
+                                </td>
+                                <td>
+                                    <input type="checkbox" checked>
+                                </td>
+                                <td>
+                                    <select id="dias" name="dias">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                    </select>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        Subtotal de diárias
+                                    </td>
+                                    <td colspan="2">
+                                        R$
+                                    </td>
+                                <tr>
+                                    <td colspan="5">
+                                        Total de seguros
+                                    </td>
+                                    <td colspan="2">
+                                        R$
+                                    </td>
+
+                                </tr>
+                                <tr class="fw-bold">
+                                    <td colspan="5" >
+                                        Valor total
+                                    </td>
+                                    <td colspan="2">
+                                        R$
+                                    </td>
+
+                                </tr>
+                                
+
+
+
+                                </table>
+                            </div>
+                        </div>
+                    
+                    </div>
+
+                    <div class="row">
+                        <%= link_to loja_aluguel_path, class: "text-decoration-none" do %>
+                            <div class="rounded sb-datalhes col-8 offset-2">
+                                <div class="container rounded diag-cards-datalhes p-4 bg-success text-center">
+                                    <span class="text-light h4">Prosseguir para Pagamento</span>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row m-5 justify-content-center">
+                <%= link_to "Voltar", '/', class: "col-2 btn btn-secondary" %>
+            </div>
+        
+    </div>
+</div>

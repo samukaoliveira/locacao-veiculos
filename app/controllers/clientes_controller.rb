@@ -33,7 +33,8 @@ class ClientesController < ApplicationController
 
     respond_to do |format|
       if @cliente.save
-        format.html { redirect_to "/", notice: "Cliente was successfully created." }
+        cookies[:cliente] = { id: @cliente.id, nome: @cliente.nome }.to_json
+        format.html { redirect_to "/", notice: "Usuário Cadastrado com Sucesso." }
         format.json { render :show, status: :created, location: @cliente }
       else
         format.html { render :new, status: :unprocessable_entity }

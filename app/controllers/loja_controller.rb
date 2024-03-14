@@ -32,10 +32,11 @@ class LojaController < ClientesController
     end
     
     def set_cliente_cookie
-      cliente_info = JSON.parse(cookies[:cliente])
-      cliente_id = cliente_info['id']
-
-      @cliente = Cliente.find(cliente_id) unless cookies[:cliente].empty?
+      if cookies[:cliente].present?
+        cliente_info = JSON.parse(cookies[:cliente])
+        cliente_id = cliente_info['id']
+        @cliente = Cliente.find(cliente_id)
+      end
     end
 
 end

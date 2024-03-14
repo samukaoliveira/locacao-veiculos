@@ -10,7 +10,6 @@ class LoginClienteController < ApplicationController
     if cliente.present?
       cookies[:cliente] = { id: cliente.id, nome: cliente.nome }.to_json
       destino = session[:return_to] || root_path
-      debugger
       redirect_to destino
     else
       redirect_to login_cliente_path, notice: "Email e/ou senha inválidos"

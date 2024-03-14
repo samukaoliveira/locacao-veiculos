@@ -29,7 +29,7 @@ class ClientesController < ApplicationController
 
   # POST /clientes or /clientes.json
   def create
-    @cliente = Cliente.new(cliente_params)
+    @cliente = ClienteService.create_cliente(cliente_params)
 
     respond_to do |format|
       if @cliente.save
@@ -45,7 +45,7 @@ class ClientesController < ApplicationController
   # PATCH/PUT /clientes/1 or /clientes/1.json
   def update
     respond_to do |format|
-      if @cliente.update(cliente_params)
+      if ClienteService.update_cliente(params[:id], cliente_params)
         format.html { redirect_to cliente_url(@cliente), notice: "Cliente was successfully updated." }
         format.json { render :show, status: :ok, location: @cliente }
       else
@@ -57,7 +57,7 @@ class ClientesController < ApplicationController
 
   # DELETE /clientes/1 or /clientes/1.json
   def destroy
-    @cliente.destroy
+    ClienteService.destroy_cliente(params[:id])
 
     respond_to do |format|
       format.html { redirect_to clientes_url, notice: "Cliente was successfully destroyed." }
@@ -73,6 +73,6 @@ class ClientesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cliente_params
-      params.require(:cliente).permit(:nome, :email, :cpf, :password)
+      params.require(:cliente).permit(:nome, :email, :cpf, :password, :password_confirmation)
     end
 end

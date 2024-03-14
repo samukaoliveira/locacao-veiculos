@@ -8,12 +8,15 @@
 
 <%= link_to "Cadastrar Novo admin", new_admin_path, class: "btn btn-primary" %>
 
-  <table class="table">
-    <tr>
-      <th>Nome: </th>
-      <th>Email: </th>
-      <th colspan="2">Ações: </th>
-    </tr>
+  <table class="table table-hover mt-3">
+    <thead class="thead-dark">
+      <tr class="rounded">
+        <th class="bg-dark text-light">Nome: </th>
+        <th class="bg-dark text-light">Email: </th>
+        <th class="bg-dark text-light" colspan="2">Ações: </th>
+      </tr>
+     </thead>
+     <tbody>
   <% @admins.each do |admin| %>
     <tr>
       <td><%= admin.nome %></td>
@@ -22,6 +25,7 @@
       <td><%= link_to "", admin_path(admin), method: :delete, data: { confirm: "Tem certeza?" }, class: "bi bi-trash text-danger" %></td>
     </tr>
   <% end %>
+  </tbody>
   </table>
 </div>
 

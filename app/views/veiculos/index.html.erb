@@ -2,13 +2,41 @@
 
 <h1 class="text-center">Veiculos</h1>
 
-<div id="veiculos">
+<div id="veiculos" class=" m-5">
+
+  <%= link_to "Cadastrar Veiculo", new_veiculo_path, class: "btn btn-primary" %>
+
+<table class="table table-hover mt-3">
+    <thead class="thead-dark">
+      <tr class="rounded">
+      <th class="bg-dark text-light">Foto</th>
+      <th class="bg-dark text-light">Carro</th>
+      <th class="bg-dark text-light">Cor</th>
+      <th class="bg-dark text-light">Qnt. Passageiros</th>
+      <th class="bg-dark text-light">Qtde Dias</th>
+      <th class="bg-dark text-light">Ano</th>
+      <th class="bg-dark text-light">Marca</th>
+      <th class="bg-dark text-light">Valor da Diária</th>
+    </tr>
+    <thead>
   <% @veiculos.each do |veiculo| %>
-    <%= render veiculo %>
-    <p>
-      <%= link_to "Show this veiculo", veiculo %>
-    </p>
-  <% end %>
+    <tr>
+    
+        <td><%= no_image_check(veiculo, :cart_avatar) %>
+        <td><%= veiculo.nome %></td>
+        <td><%= veiculo.cor %></td>
+        <td><%= veiculo.qnt_passageiros %></td>
+        <td><%= veiculo.placa.upcase %></td>
+        <td><%= veiculo.ano %></td>
+        <td><%= veiculo.marca.nome %></td>
+        <td><%= number_to_currency(veiculo.valor) %></td>
+        
+        <p>
+        </p>
+      <% end %>
+    </tr>
+  <table>
+          
+      
 </div>
 
-<%= link_to "New veiculo", new_veiculo_path %>

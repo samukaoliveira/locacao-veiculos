@@ -9,6 +9,16 @@ class ClienteService
       cliente = Cliente.find(cliente_id)
       cliente.update(cliente_params)
     end
+
+    def self.show_cliente(cliente_id)
+        cliente = Cliente.find(cliente_id)
+        cliente
+    end
+
+    def self.clientes_index
+        clientes = Cliente.all
+        clientes
+    end
   
     def self.destroy_cliente(cliente_id)
       cliente = Cliente.find(cliente_id)

@@ -7,7 +7,7 @@
         </td>
 
         <td class="" >
-          <%= link_to "Home", admins_initial_path, class:"nav-link d-inline #{ "text-secondary" unless current_page?(controller: 'admins', action: 'initial')}" %>
+          <%= link_to "Home", initial_admins_path, class:"nav-link d-inline #{ "text-secondary" unless current_page?(controller: 'admins', action: 'initial')}" %>
         </td>
 
         <td class="" >
@@ -18,12 +18,14 @@
           <%= link_to "Veículos", veiculos_path, class:"nav-link active d-inline #{ "text-secondary" unless controller.controller_name == 'veiculos'}" %>
         </td>
 
+      <%# if @admin.present? %>
         <td class="" >
-          <%= link_to "Clientes", clientes_path, class:"nav-link active #{ "text-secondary" unless controller.controller_name == 'clientes'}" %>
+          <%= link_to "Clientes", clientes_admins_path, class:"nav-link active #{ "text-secondary" unless controller.controller_name == 'admins' && controller.action_name == 'clientes_index'}" %>
         </td>
+      <%# end %>
 
         <td class="" >
-          <%= link_to "Reservas", reservas_path, class:"nav-link active #{ "text-secondary" unless controller.controller_name == 'reservas'}" %>
+          <%= link_to "Reservas", reservas_admins_path, class:"nav-link active #{ "text-secondary" unless controller.controller_name == 'admins' && controller.action_name == 'reservas'}" %>
         </td>
 
         <td class="" >
@@ -35,6 +37,7 @@
         </td>
       </table>
       <hr class="fs-5">
+      <%= @admin %>
     </div>
   </div>
 </div>

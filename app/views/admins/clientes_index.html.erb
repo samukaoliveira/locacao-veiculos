@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 class="text-center">Clientes</h1>
+
+<div id="clientes" class="m-4">
+  <table class="table m-4">
+    <tr>
+      <th>nome</th>
+      <th>email</th>
+      <th>cpf</th>
+    </tr>
+    <% @clientes.each do |cliente| %>
+    <tr>
+
+        <td><%= cliente.nome %></td>
+        <td><%= cliente.email %></td>
+        <td><%= cliente.cpf %></td>
+        <td><%= link_to "Detalhes", clientes_admins_path(cliente) %></td>
+    </tr>
+    <% end %>
+  <table>
+</div>
+

@@ -67,6 +67,19 @@ class AdminsController < ApplicationController
     end
   end
 
+
+  def cliente
+    @cliente = ClienteService.show_cliente(cliente_params)
+  end
+
+  def clientes_index
+    @clientes = ClienteService.clientes_index
+  end
+
+  def reservas
+    @reservas = Reserva.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin
@@ -76,5 +89,9 @@ class AdminsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def admin_params
       params.require(:admin).permit(:nome, :email, :password)
+    end
+
+    def cliente_params
+      params.require(:cliente).permit(:nome, :email, :telefone)
     end
 end

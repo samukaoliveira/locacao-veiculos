@@ -1,0 +1,38 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 class="text-center">Reservas</h1>
+
+<div id="reservas" class="m-4">
+  <table class="table">
+    <tr>
+      <th>Cliente</th>
+      <th>Carro</th>
+      <th>Marca</th>
+      <th>Ano</th>
+      <th>Diárias</th>
+      <th>Período</th>
+      <th>Qtde Dias</th>
+      <th>Seguro Extra</th>
+      <th>Total</th>
+    </tr>
+    <tr>
+      <% @reservas.each do |reserva| %>
+
+        <td><%= reserva.cliente.nome %></td>
+        <td><%= reserva.carro.nome %></td>
+        <td><%= reserva.marca.nome %></td>
+        <td><%= reserva.carro.ano %></td>
+        <td><%= reserva.carro.valor %></td>
+        <td><%= reserva.inicio %> a <%= reserva.fim %></td>
+        <td><%= reserva.qt_diarias %></td>
+        <td><%= reserva.seguro %></td>
+        <td><%= reserva.total %></td>
+        
+        <p>
+          <%= link_to "Show this reserva", reservas_admins_path(reserva) %>
+        </p>
+      <% end %>
+    </tr>
+  <table>
+</div>
+

@@ -1,16 +1,27 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Admins</h1>
+<h1 class="text-center">Admins</h1>
 
-<div class=""><a class="btn btn-danger" href="/logout_admin/">Sair</a></div>
+<div class=""></div>
 
-<div id="admins">
+<div id="admins" class=" m-5">
+
+<%= link_to "Cadastrar Novo admin", new_admin_path, class: "btn btn-primary" %>
+
+  <table class="table">
+    <tr>
+      <th>Nome: </th>
+      <th>Email: </th>
+      <th colspan="2">Ações: </th>
+    </tr>
   <% @admins.each do |admin| %>
-    <%= render admin %>
-    <p>
-      <%= link_to "Show this admin", admin %>
-    </p>
+    <tr>
+      <td><%= admin.nome %></td>
+      <td><%= admin.email %></td>
+      <td><%= link_to "", edit_admin_path(admin), class: "bi bi-pencil" %></td>
+      <td><%= link_to "", admin_path(admin), method: :delete, data: { confirm: "Tem certeza?" }, class: "bi bi-trash text-danger" %></td>
+    </tr>
   <% end %>
+  </table>
 </div>
 
-<%= link_to "New admin", new_admin_path %>

@@ -9,8 +9,14 @@ Rails.application.routes.draw do
   get 'logout_admin', to: 'login_admin#logout'
   get 'recovery_admin', to: 'login_admin#admin_recovery'
   post 'recovery_send', to: 'login_admin#recovery_send'
-  resources :admins
-  get 'admins_initial', to: 'admins#initial'
+  resources :admins do
+    collection do
+      get 'cliente', to: 'admins#cliente'
+      get 'clientes', to: 'admins#clientes_index'
+      get 'initial', to: 'admins#initial'
+      get 'reservas', to: 'admins#reservas'
+    end
+  end
   resources :reservas, only: [:index, :show]
   resources :clientes do
     resources :enderecos

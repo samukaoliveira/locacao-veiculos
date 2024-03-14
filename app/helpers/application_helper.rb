@@ -21,4 +21,8 @@ module ApplicationHelper
         return model.imagem.purge
     end
 
+    def cliente_params
+        params.require(:cliente).permit(:nome, :email, :telefone)
+      end
+
 end

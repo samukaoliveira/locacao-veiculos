@@ -12,11 +12,12 @@
       <th class="bg-dark text-light">Foto</th>
       <th class="bg-dark text-light">Carro</th>
       <th class="bg-dark text-light">Cor</th>
-      <th class="bg-dark text-light">Qnt. Passageiros</th>
+      <th class="bg-dark text-light">Lotação</th>
       <th class="bg-dark text-light">Qtde Dias</th>
       <th class="bg-dark text-light">Ano</th>
       <th class="bg-dark text-light">Marca</th>
       <th class="bg-dark text-light">Valor da Diária</th>
+      <th colspan="2" class="bg-dark text-light">Ações</th>
     </tr>
     <thead>
   <% @veiculos.each do |veiculo| %>
@@ -30,9 +31,8 @@
         <td><%= veiculo.ano %></td>
         <td><%= veiculo.marca.nome %></td>
         <td><%= number_to_currency(veiculo.valor) %></td>
-        
-        <p>
-        </p>
+        <td><%= link_to "", edit_veiculo_path(veiculo), class: "bi bi-pencil" %></td>
+      <td><%= link_to "", veiculo_path(veiculo), method: :delete, data: { confirm: "Tem certeza?" }, class: "bi bi-trash text-danger" %></td>
       <% end %>
     </tr>
   <table>

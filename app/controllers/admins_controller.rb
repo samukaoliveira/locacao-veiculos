@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
   before_action :set_admin, only: %i[ show edit update destroy ]
   before_action :authenticate_admin!
+  before_action :marcas_sem_veiculo, only: %i[ initial ] 
 
   def authenticate_admin!
     if cookies[:admin].blank?
@@ -10,6 +11,10 @@ class AdminsController < ApplicationController
 
   # GET /admins or /admins.json
   def initial
+    @reservas = Reserva.all
+    @clientes = Cliente.all
+    @marcas = Marca.all
+    @veiculos = Veiculo.all
   end
 
   def index
@@ -78,6 +83,11 @@ class AdminsController < ApplicationController
 
   def reservas
     @reservas = Reserva.all
+  end
+
+  def marcas_sem_veiculo
+    @marcas_sem = Marca.includes(:veiculos).select { |marca| marca.veiculos.empty? }
+    @aviso = "Todas as marcas já tem pelo menos um veículo associado" if @marcas_sem.empty?
   end
 
   private

@@ -1,7 +1,51 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Admins</h1>
+<h1 class="text-center">Painel Administrativo</h1>
 
+<div class="container mt-5">
 
+    <div class="row justify-content-center">
 
-<%= link_to "New admin", new_admin_path %>
+        <div class="rounded col-sm-2 sombra">
+                        
+            <div class="rounded diagonal-cards text-center pt-4">
+                <p class="titulos-car text-primary">Reservas Efetuadas este mês<%=  %></p>
+                <p class="fw-bold"><%= @reservas.count %></p>
+                <%=  %>
+            </div>
+        </div>
+
+        <div class="rounded col-sm-2 sombra">
+                        
+            <div class="rounded diagonal-cards text-center pt-4">
+                <p class="titulos-car text-warning">Marcas sem veículos cadastrados<%=  %></p>
+                <% @marcas_sem.each do |marca| %>
+                <p class="fw-bold"><%= marca.nome %></p>
+                <% end %>
+                <p class="fw-bold"><%= @aviso %></p>
+            </div>
+        </div>
+
+        <div class="rounded col-sm-2 sombra">
+                        
+            <div class="rounded diagonal-cards text-center pt-4 text-success">
+                <p class="titulos-car">Veículos Reservados<%=  %></p>
+                <p class="fw-bold"><%= @reservas.count %>/<%= @veiculos.count %></p>
+                <%=  %>
+            </div>
+        </div>
+
+        <div class="rounded col-sm-2 sombra">
+                        
+            <div class="rounded diagonal-cards text-center pt-4 text-danger">
+                <p class="titulos-car">Reservas Pendentes<%=  %></p>
+                <p class="fw-bold"><%= @reservas.count %></p>
+                <%=  %>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+</div>

@@ -85,6 +85,10 @@ class AdminsController < ApplicationController
     @reservas = Reserva.all
   end
 
+  def unidades
+    @unidades = Unidade.all
+  end
+
   def marcas_sem_veiculo
     @marcas_sem = Marca.includes(:veiculos).select { |marca| marca.veiculos.empty? }
     @aviso = "Todas as marcas já tem pelo menos um veículo associado" if @marcas_sem.empty?

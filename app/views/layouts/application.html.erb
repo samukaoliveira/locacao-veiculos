@@ -3,6 +3,8 @@
   <head>
     <title>LocacaoVeiculos</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline'">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,4 +16,7 @@
     <%= render 'admins/menu' %>
     <%= yield %>
   </body>
+  <script>
+    
+    <script>
 </html>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :unidades
   get 'loja/index', to: 'loja#index'
   get 'loja/veiculo/:id', to: 'loja#veiculo', as: 'loja_veiculo'
   get 'loja/aluguel/:id', to: 'loja#aluguel', as: 'loja_aluguel'

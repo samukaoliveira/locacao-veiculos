@@ -11,6 +11,10 @@
         </td>
 
         <td class="" >
+          <%= link_to "Unidades", unidades_path, class:"nav-link d-inline #{ "text-secondary" unless current_page?(controller: 'admins', action: 'initial')}" %>
+        </td>
+
+        <td class="" >
           <%= link_to "Marcas", marcas_path, class:"nav-link active d-inline #{ "text-secondary" unless controller.controller_name == 'marcas'}" %>
         </td>
 

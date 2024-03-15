@@ -4,7 +4,7 @@ include HTTParty
   before_action :set_cliente_cookie
   after_action :capturar_destino
   before_action :authenticate_user!, only: %i[ aluguel locacao ]
-  before_action :set_token_pagamento
+  before_action :set_token_pagamento, only: %i[ aluguel locacao ]
 
   def index
     if params[:nome].present?

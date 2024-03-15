@@ -1,0 +1,41 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 class="text-center">Unidades</h1>
+
+<div id="unidades" class=" m-5">
+
+<%= link_to "Cadastrar Unidade", new_unidade_path, class: "btn btn-primary" %>
+
+  <table class="table table-hover mt-3">
+    <thead class="thead-dark">
+      <tr class="rounded">
+      <th class="bg-dark text-light">Nome</th>
+      <th class="bg-dark text-light">Rua</th>
+      <th class="bg-dark text-light">Numero</th>
+      <th class="bg-dark text-light">Complemento</th>
+      <th class="bg-dark text-light">Bairro</th>
+      <th class="bg-dark text-light">Cidade</th>
+      <th class="bg-dark text-light">UF</th>
+      <th class="bg-dark text-light">CEP</th>
+      <th class="bg-dark text-light">Status</th>
+      <th class="bg-dark text-light">Ações</th>
+    </tr>
+    <thead>
+      <% @unidades.each do |unidade| %>
+    <tr>
+
+        <td><%= unidade.nome %></td>
+        <td><%= unidade.rua %></td>
+        <td><%= unidade.numero %></td>
+        <td><%= unidade.complemento %></td>
+        <td><%= unidade.bairro %></td>
+        <td><%= unidade.cidade %></td>
+        <td><%= unidade.uf %></td>
+        <td><%= unidade.cep %></td>
+        <td><%= unidade.status %></td>
+
+    </tr>
+      <% end %>
+  <table>
+</div>
+

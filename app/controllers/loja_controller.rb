@@ -1,8 +1,10 @@
 class LojaController < ClientesController
+include HTTParty
   before_action :set_veiculo, except: :index
   before_action :set_cliente_cookie
   after_action :capturar_destino
   before_action :authenticate_user!, only: %i[ aluguel locacao ]
+  before_action :set_token_pagamento
 
   def index
     if params[:nome].present?
@@ -22,6 +24,17 @@ class LojaController < ClientesController
   end
 
   private
+
+    def set_token_pagamento
+      email = "mucabatera@gmail.com"
+      token = "F8FB79C9D33147D2B3F669C7F26BFA3F"
+      app_id = "samcar"
+      app_key = "9FA90B4EC8C829D444D89F806C3D230B"
+      response = HTTParty.post("https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=#{email}&token=#{token}")
+      if (200..299).include?(response.code)
+        @session_id = response.parsed_response["session"]["id"]
+      end
+    end
 
     def capturar_destino
       session[:return_to] = request.fullpath

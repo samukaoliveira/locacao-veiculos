@@ -158,4 +158,24 @@
 
     atualizaTotais();
 
+
+    PagSeguroDirectPayment.setSessionId("<%= @session_id %>");
+
+    function finalizaPagamento(e){
+        e.preventDefault();
+        const total = document.getElementById("valorTotal").value;
+        PagSeguroDirectPayment.getPaymentMethods({
+            amount: total,
+            success: function(response) {
+
+            },
+            error: function(response){
+
+            },
+            complete: function(response){
+
+            }
+        });
+    }
+
 </script>

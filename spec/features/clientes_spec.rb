@@ -28,7 +28,7 @@ RSpec.feature "Clientes", type: :feature, js: true do
     it "Cliente faz login com sucesso" do
       login_test
       
-      expect(page).to have_content 'Nome'
+      expect(page).to have_content 'Perfil'
     end
 
     it "Cliente faz login e logout com sucesso" do
@@ -71,7 +71,7 @@ RSpec.feature "Clientes", type: :feature, js: true do
         sleep(2)
         visit(clientes_path)
         sleep(2)
-        expect(page).to have_content("Nome")
+        expect(page).to have_content("Perfil")
         sleep(2)
       end
     end
@@ -100,7 +100,7 @@ RSpec.feature "Clientes", type: :feature, js: true do
         find('input#criar').click
         sleep(2)
 
-        expect(page).to have_content("Cliente was successfully created.")
+        expect(page).to have_content("Usuário Cadastrado com Sucesso.")
       end
     end
 
@@ -176,8 +176,7 @@ RSpec.feature "Clientes", type: :feature, js: true do
 
       ActiveRecord::Base.connection.disable_referential_integrity do
         admin = create(:admin)
-        marca = create(:marca)
-        cliente = create(:cliente, marca_id: marca.id)
+        cliente = create(:cliente)
         
         sleep(1)
         visit(cliente_path(cliente))

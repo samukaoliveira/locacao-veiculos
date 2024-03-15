@@ -78,7 +78,7 @@ RSpec.feature "Marcas", type: :feature, js: true do
         sleep(1)
         visit(marcas_path)
 
-        find('a', text: 'New marca', wait: 1).click
+        find('a', text: 'Cadastrar Marca', wait: 1).click
         sleep(1)
         find('input#marca_nome').send_keys("Ferrari")
         sleep(1)
@@ -99,7 +99,7 @@ RSpec.feature "Marcas", type: :feature, js: true do
         sleep(1)
         visit(marcas_path)
 
-        find('a', text: 'New marca', wait: 1).click
+        find('a', text: 'Cadastrar Marca', wait: 1).click
         sleep(1)
         find('input#marca_sigla').send_keys("F")
         sleep(1)

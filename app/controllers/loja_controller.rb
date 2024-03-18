@@ -10,6 +10,12 @@ include HTTParty
     partida = params[:partida]
     dt_partida = params[:dt_partida]
     hr_partida = params[:hr_partida]
+
+    session[:parametros] = [
+      partida: partida,
+      dt_partida: dt_partida,
+      hr_partida: hr_partida
+    ]
     
     #faz o tratamento do perfil
     
@@ -25,9 +31,11 @@ include HTTParty
   end
 
   def veiculo
+    
   end
 
   def aluguel
+    @parametros = session[:parametros]
   end
 
   def locacao

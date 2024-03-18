@@ -46,6 +46,11 @@
   </div>
 
   <div>
+    <%= form.label :unidade_id, style: "display: block" %>
+    <%= form.collection_select :unidade_id, @unidades, :id, :nome %>
+  </div>
+
+  <div>
     <%= form.label :imagem, style: "display: block" %>
     <%= form.file_field :imagem %>
   </div>

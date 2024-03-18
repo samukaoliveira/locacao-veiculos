@@ -77,7 +77,7 @@
     minimumInputLength: 2,
     tags: false,
     ajax: {
-        url: '/unidades_api',
+        url: '/unidades_busca',
         dataType: 'json',
         delay: 1000,
         type: 'GET',
@@ -118,7 +118,7 @@ select2_local_destino.select2({
     minimumInputLength: 2,
     tags: false,
     ajax: {
-        url: '/unidades_api',
+        url: '/unidades_busca',
         dataType: 'json',
         delay: 1000,
         type: 'GET',
@@ -193,17 +193,12 @@ function updateDetalharLink() {
     if (dataPartida && dataDestino) {
         // Atualize o link de detalhamento com os parâmetros dos dois selects
         var detalharLink = $('#detalhar-link');
-        detalharLink.attr('href', '<%= veiculos_path %>' + '?partida=' + dataPartida.id + '&destino=' + dataDestino.id);
+        detalharLink.attr('href', '<%= root_path %>' + '?partida=' + dataPartida.id + '&destino=' + dataDestino.id);
     }
     else if (dataPartida && !dataDestino) {
         // Atualize o link de detalhamento com os parâmetros dos dois selects
         var detalharLink = $('#detalhar-link');
-        detalharLink.attr('href', '<%= veiculos_path %>' + '?partida=' + dataPartida.id);
-    }
-    else if (!dataPartida && dataDestino) {
-        // Atualize o link de detalhamento com os parâmetros dos dois selects
-        var detalharLink = $('#detalhar-link');
-        detalharLink.attr('href', '<%= veiculos_path %>' + '?destino=' + dataDestino.id);
+        detalharLink.attr('href', '<%= root_path %>' + '?partida=' + dataPartida.id);
     }
 }
 

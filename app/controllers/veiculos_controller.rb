@@ -1,33 +1,10 @@
 class VeiculosController < ApplicationController
   before_action :set_veiculo, only: %i[ show edit update destroy ]
-  before_action :load_marcas
+  before_action :load_marcas, :load_unidades
 
   # GET /veiculos or /veiculos.json
   def index
-
-    partida = params[:partida]
-    destino = params[:destino]
-    
-    #faz o tratamento do perfil
-    if current_user && current_user.motorista?
-      @veiculos = current_user.travels.includes(:user)
-    else
-              #verifica se foi passado algum parâmetro de pesquisa
-              if partida.present? && destino.present? 
-                @veiculos = Veiculo.where(unidade_atual: partida).where(local_destino: destino)
-              
-              elsif partida.present?
-                @veiculos = Veiculo.includes(:user).where(local_partida: partida)
-              
-              elsif destino.present? 
-                @veiculos = Veiculo.includes(:user).where(local_destino: destino)
-              
-              else
-                @veiculos = Veiculo.includes(:user).all
-              end
-
-    end
-
+    @veiculos = Veiculo.all
   end
 
   # GET /veiculos/1 or /veiculos/1.json
@@ -89,10 +66,14 @@ class VeiculosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def veiculo_params
-      params.require(:veiculo).permit(:nome, :cor, :qnt_passageiros, :placa, :ano, :marca_id, :valor, :imagem)
+      params.require(:veiculo).permit(:nome, :cor, :qnt_passageiros, :placa, :ano, :marca_id, :valor, :imagem, :unidade_id)
     end
 
     def load_marcas
       @marcas = Marca.all
+    end
+
+    def load_unidades
+      @unidades = Unidade.all
     end
 end

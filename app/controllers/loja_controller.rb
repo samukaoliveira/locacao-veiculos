@@ -7,11 +7,17 @@ include HTTParty
   before_action :set_token_pagamento, only: %i[ aluguel locacao ]
 
   def index
-    if params[:nome].present?
-      @veiculos = Veiculo.where("lower (nome) ilike '%#{URI::encode_www_form_component(params[:nome])}%'")
-    else
-      @veiculos = Veiculo.all
-    end
+    partida = params[:partida]
+    
+    #faz o tratamento do perfil
+    
+      #verifica se foi passado algum parâmetro de pesquisa
+      if partida.present?
+        @veiculos = Veiculo.where(unidade_id: partida)
+      else
+        @veiculos = Veiculo.all
+      end
+
   end
 
   def veiculo

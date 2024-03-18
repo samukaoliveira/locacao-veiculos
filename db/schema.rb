@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_15_194812) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_18_135644) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -120,7 +120,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_15_194812) do
     t.integer "qnt_passageiros"
     t.decimal "valor"
     t.integer "ano"
+    t.bigint "unidade_id"
     t.index ["marca_id"], name: "index_veiculos_on_marca_id"
+    t.index ["unidade_id"], name: "index_veiculos_on_unidade_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

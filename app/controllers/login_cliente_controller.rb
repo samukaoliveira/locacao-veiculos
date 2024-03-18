@@ -1,6 +1,6 @@
 class LoginClienteController < ApplicationController
   layout 'loja'
-  skip_before_action :verify_authenticity_token, only: :logar
+  skip_before_action :verify_authenticity_token, only: :cliente_logar
   before_action :store_location, only: [:new, :edit]
   def cliente_login
   end

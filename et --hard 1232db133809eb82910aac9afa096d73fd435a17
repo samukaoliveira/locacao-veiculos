@@ -1,0 +1,65 @@
+[33mcommit 1232db133809eb82910aac9afa096d73fd435a17[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m)[m
+Author: Samuel <mucabatera@gmail.com>
+Date:   Mon Mar 18 11:31:45 2024 -0300
+
+    REFS #busca por Samuel Oliveira: Pesquisa de veículos por unidade de retirada funcionando
+
+[33mcommit d90134af1e7a1b507b8ed3a8030c19c5617f919d[m
+Author: Samuel <mucabatera@gmail.com>
+Date:   Mon Mar 18 10:56:17 2024 -0300
+
+    REFS #busca por Samuel Oliveira: Cliando a view de busca com locais, data e hora
+
+[33mcommit 6d5c7fc57d80ce60df07c4ea21f9b0286e9d1df5[m
+Author: Samuel <mucabatera@gmail.com>
+Date:   Fri Mar 15 17:39:41 2024 -0300
+
+    REFS #model-veiculos por Samuel Oliveira: Início dos testes de Unidades
+
+[33mcommit f1cbcc0c096383fc5620b312ca9a8773cc2a7185[m
+Author: Samuel <mucabatera@gmail.com>
+Date:   Fri Mar 15 17:05:36 2024 -0300
+
+    REFS #model-veiculos por Samuel Oliveira: Criando o scaffold de unidades e acertando as views
+
+[33mcommit 9b7060777549e02704d0d27cde9b15335ddac8f8[m
+Author: Samuel <mucabatera@gmail.com>
+Date:   Fri Mar 15 11:57:26 2024 -0300
+
+    REFS #model-veiculos por Samuel Oliveira: Criando os étodos de integração com o PagSeguro
+
+[33mcommit 12c844eb2a407d8eca945e4395473a02a88bd024[m
+Author: Samuel <mucabatera@gmail.com>
+Date:   Thu Mar 14 17:46:05 2024 -0300
+
+    REFS #model-veiculos por Samuel Oliveira: Mais ajustes das view de admin
+
+[33mcommit 75ec51717d2270dc722711765f75f8cf9e863b2f[m
+Author: Samuel <mucabatera@gmail.com>
+Date:   Thu Mar 14 16:34:32 2024 -0300
+
+    REFS #model-veiculos por Samuel Oliveira: Acertando as tables de marcas, veiculos, clientes, reservas e admins
+
+[33mcommit 1596878690c61bca5c063f883dfedd31731cb0b8[m
+Author: Samuel <mucabatera@gmail.com>
+Date:   Thu Mar 14 15:51:16 2024 -0300
+
+    REFS #model-veiculos por Samuel Oliveira: Acertando as rotas de admin e as views de clientes reservas e admins
+
+[33mcommit 67f656536739b5248fc2180f1c4a903fa24874a3[m
+Author: Samuel <mucabatera@gmail.com>
+Date:   Thu Mar 14 10:02:27 2024 -0300
+
+    REFS #model-veiculos por Samuel Oliveira: Logando direto depois do cadastro
+
+[33mcommit 540e4801b42db1a735a9d8ed621a8d4b53b0682d[m
+Author: Samuel <mucabatera@gmail.com>
+Date:   Thu Mar 14 09:57:47 2024 -0300
+
+    REFS #model-veiculos por Samuel Oliveira: Criando Service para CRUD de clientes
+
+[33mcommit 145319bdcd28046d84d38619f87fddfd07a6672f[m
+Author: Samuel <mucabatera@gmail.com>
+Date:   Wed Mar 13 17:35:23 2024 -0300
+
+    REFS #model-veiculos por Samuel Oliveira: Criando Helpers de login, perfil e incluindo ID no cookie de cliente

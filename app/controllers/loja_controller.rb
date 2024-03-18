@@ -8,12 +8,16 @@ include HTTParty
 
   def index
     partida = params[:partida]
+    dt_partida = params[:dt_partida]
+    hr_partida = params[:hr_partida]
     
     #faz o tratamento do perfil
     
       #verifica se foi passado algum parâmetro de pesquisa
       if partida.present?
         @veiculos = Veiculo.where(status: :disponivel).where(unidade_id: partida)
+      elsif partida.present? && dt_partida.present?
+        @veiculos = Veiculo.includes(:reservas).where(unidade_id: dt_partida).where(dt_final: dt_partida).where(hr_final: hr_partida - 12.hours)
       else
         @veiculos = Veiculo.where(status: :disponivel)
       end

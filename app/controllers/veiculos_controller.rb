@@ -5,6 +5,13 @@ class VeiculosController < ApplicationController
   # GET /veiculos or /veiculos.json
   def index
     @veiculos = Veiculo.all
+
+    sort_by = params[:sort_by]
+    sort_dir = params[:sort_dir] || "asc"
+  
+    if sort_by.present? && Veiculo.column_names.include?(sort_by)
+      @veiculos = @veiculos.order("#{sort_by} #{sort_dir}")
+    end
   end
 
   # GET /veiculos/1 or /veiculos/1.json

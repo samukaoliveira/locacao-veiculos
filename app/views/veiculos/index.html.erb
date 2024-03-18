@@ -9,16 +9,17 @@
 <table class="table table-hover mt-3">
     <thead class="thead-dark">
       <tr class="rounded">
-      <th class="bg-dark text-light">Foto</th>
-      <th class="bg-dark text-light">Carro</th>
-      <th class="bg-dark text-light">Cor</th>
-      <th class="bg-dark text-light">Lotação</th>
-      <th class="bg-dark text-light">Qtde Dias</th>
-      <th class="bg-dark text-light">Ano</th>
-      <th class="bg-dark text-light">Marca</th>
-      <th class="bg-dark text-light">Valor da Diária</th>
-      <th class="bg-dark text-light">Unidade Atual</th>
-      <th class="bg-dark text-light">Status</th>
+      <th class="bg-dark text-light"><%= link_to "Foto", request.params.merge(sort_by: "imagem"), class: "nav-link" %></th>
+    <th class="bg-dark text-light"><%= link_to "Nome", request.params.merge(sort_by: "nome"), class: "nav-link" %></th>
+    <th class="bg-dark text-light"><%= link_to "Cor", request.params.merge(sort_by: "cor"), class: "nav-link" %></th>
+    <th class="bg-dark text-light"><%= link_to "Lotação", request.params.merge(sort_by: "qnt_passageiros"), class: "nav-link" %></th>
+    <!-- Adicione links para outras colunas conforme necessário -->
+    <th class="bg-dark text-light"><%= link_to "Placa", request.params.merge(sort_by: "placa"), class: "nav-link" %></th>
+    <th class="bg-dark text-light"><%= link_to "Ano", request.params.merge(sort_by: "ano"), class: "nav-link" %></th>
+    <th class="bg-dark text-light"><%= link_to "Marca", request.params.merge(sort_by: "marca"), class: "nav-link" %></th>
+    <th class="bg-dark text-light"><%= link_to "Valor", request.params.merge(sort_by: "valor"), class: "nav-link" %></th>
+    <th class="bg-dark text-light"><%= link_to "Unidade", request.params.merge(sort_by: "unidade"), class: "nav-link" %></th>
+    <th class="bg-dark text-light"><%= link_to "Status", request.params.merge(sort_by: "status"), class: "nav-link" %></th>
       <th colspan="2" class="bg-dark text-light">Ações</th>
     </tr>
     <thead>

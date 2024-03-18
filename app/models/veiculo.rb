@@ -11,4 +11,6 @@ class Veiculo < ApplicationRecord
     attachable.variant :mid2_thumb, resize_to_limit: [300, 180]
     attachable.variant :big_thumb, resize_to_limit: [400, 240]
   end
+
+  enum status: { disponivel: 0, ocupado: 1 }
 end

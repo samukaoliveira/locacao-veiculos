@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_18_135644) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_18_174611) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -121,6 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_18_135644) do
     t.decimal "valor"
     t.integer "ano"
     t.bigint "unidade_id"
+    t.integer "status", default: 0
     t.index ["marca_id"], name: "index_veiculos_on_marca_id"
     t.index ["unidade_id"], name: "index_veiculos_on_unidade_id"
   end

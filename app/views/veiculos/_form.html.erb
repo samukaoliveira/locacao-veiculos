@@ -56,6 +56,11 @@
   </div>
 
   <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.select :status, options_for_select(Veiculo.statuses.map { |status, _| [status.to_s.humanize, status] }, @veiculo.status), {}%>
+  </div>
+
+  <div>
     <%= form.submit class: "btn btn-success" %>
   </div>
 <% end %>

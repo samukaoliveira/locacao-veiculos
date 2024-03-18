@@ -13,9 +13,9 @@ include HTTParty
     
       #verifica se foi passado algum parâmetro de pesquisa
       if partida.present?
-        @veiculos = Veiculo.where(unidade_id: partida)
+        @veiculos = Veiculo.where(status: :disponivel).where(unidade_id: partida)
       else
-        @veiculos = Veiculo.all
+        @veiculos = Veiculo.where(status: :disponivel)
       end
 
   end

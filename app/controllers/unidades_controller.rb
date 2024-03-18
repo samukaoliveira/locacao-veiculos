@@ -3,7 +3,37 @@ class UnidadesController < ApplicationController
 
   # GET /unidades or /unidades.json
   def index
-    @unidades = Unidade.all
+    
+    id_uni = params[:id_uni]
+  
+    if id_uni.present?
+      @unidades = Unidade.where(id: id_uni)
+    else
+      @unidades = Unidade.all
+    end
+  
+    if @unidades.empty?
+      respond_to do |format|
+        format.html # Responde a solicitações HTML
+        format.json { render json: { message: "Nenhum resultado encontrado" } }
+      end
+    else
+      respond_to do |format|
+        format.html # Responde a solicitações HTML
+        format.json { render json: @unidades }
+      end
+    end
+  end
+
+  def unidades_busca
+    term = params[:term][:term].to_s.downcase
+    @unidades = Unidade.where('LOWER(nome) LIKE :term OR LOWER(bairro) LIKE :term OR LOWER(cidade) LIKE :term',
+     term: "%#{term.downcase}%")
+    
+    respond_to do |format|
+      format.json { render json: @unidades.to_json(only: [:id, :nome]) } # Responde a solicitações JSON
+    end
+    
   end
 
   # GET /unidades/1 or /unidades/1.json

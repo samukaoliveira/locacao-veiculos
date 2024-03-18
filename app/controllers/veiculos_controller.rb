@@ -4,7 +4,30 @@ class VeiculosController < ApplicationController
 
   # GET /veiculos or /veiculos.json
   def index
-    @veiculos = Veiculo.all
+
+    partida = params[:partida]
+    destino = params[:destino]
+    
+    #faz o tratamento do perfil
+    if current_user && current_user.motorista?
+      @veiculos = current_user.travels.includes(:user)
+    else
+              #verifica se foi passado algum parâmetro de pesquisa
+              if partida.present? && destino.present? 
+                @veiculos = Veiculo.where(unidade_atual: partida).where(local_destino: destino)
+              
+              elsif partida.present?
+                @veiculos = Veiculo.includes(:user).where(local_partida: partida)
+              
+              elsif destino.present? 
+                @veiculos = Veiculo.includes(:user).where(local_destino: destino)
+              
+              else
+                @veiculos = Veiculo.includes(:user).all
+              end
+
+    end
+
   end
 
   # GET /veiculos/1 or /veiculos/1.json

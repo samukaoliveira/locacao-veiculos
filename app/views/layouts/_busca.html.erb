@@ -1,0 +1,213 @@
+
+
+
+<div id="navbar" class="row justify-content-center mt-1">
+  <div id="centro" class="align-items-center rounded">
+    <div id="centro-row" class="row align-items-center">
+        <div class="col-10">
+            <div class="row"> 
+                <div id="label-select-1" class="col-sm-3">
+                    <span class="text-light">Local de retirada: </span>
+                </div> 
+                <div id="select" class="col-sm-3">
+                    <select class="local_partida col-12"></select>
+                </div>  
+                <div id="label-data-1" class="col-sm-1">
+                    <span class="col-12 text-light">Data: </span>
+                </div> 
+                <div id="data-1" class="col-sm-2">
+                    <input type="date" class="col-12">
+                </div>  
+                <div id="label-hora-1" class="col-sm-1">
+                    <span class="col-12 text-light">Hora: </span>
+                </div> 
+                <div id="hora-1" class="col-sm-2">
+                    <input type="time" min="09:00" max="18:00" class="col-12">
+                </div>
+            </div>
+            <div class="row">
+                <div id="label-select-2" class="col-sm-3">
+                <span class="col-sm-10 text-light">Local de devolução: </span>
+                </div> 
+                <div id="select-2" class="col-sm-3">
+                    <select class="local_destino col-12"></select>
+                </div>  
+                <div id="label-data-2" class="col-sm-1">
+                    <span class="col-12 text-light">Data: </span>
+                </div> 
+                <div id="data-2" class="col-sm-2">
+                    <input type="date" class="col-12">
+                </div>  
+                <div id="label-hora-2" class="col-sm-1">
+                    <span class="col-12 text-light">Hora: </span>
+                </div> 
+                <div id="hora-2" class="col-sm-2">
+                    <input type="time" min="09:00" max="18:00" class="col-12">
+                </div>  
+            </div>
+        </div> 
+
+
+        <div id="btn-search" class="col-2 justify-content-end">
+        <%# link_to 'Detalhar', unidades_path(params[:id]) %>
+        <a id="detalhar-link" class="btn btn-warning col-sm-10 btn-sm m-1">Buscar</a>
+        </div> 
+      
+    </div> 
+  </div> 
+</div>
+<br>
+
+<script>
+
+
+//  $(document).ready(function(){
+//    $('.select2').select2();
+//})
+
+//  Busca local de partida
+
+  var select2_local_partida = $(".local_partida");
+  var select2_local_destino = $(".local_destino");
+
+  var dataPartida;
+  var dataDestino;
+
+  select2_local_partida.select2({
+    minimumInputLength: 2,
+    tags: false,
+    ajax: {
+        url: '/unidades_api',
+        dataType: 'json',
+        delay: 1000,
+        type: 'GET',
+        //quietMillis: 50,
+        headers: {
+        'Accept': 'application/json'
+        },
+        data: function (busca) {
+            return {
+                term: busca
+            };
+        },
+        processResults: function (data) {
+
+           // Limitar o número de sugestões para no máximo 20
+            var limitaData = data.slice(0, 20);
+
+            return {
+                results: $.map(limitaData, function (item) {
+                    return {
+                        id: item.id,
+                        text: item.nome
+                    };
+                })
+            };
+        },
+        success: function (data) {
+            console.log('Sucesso:', data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error('Erro:', textStatus, errorThrown);
+        }
+    }
+});
+
+
+select2_local_destino.select2({
+    minimumInputLength: 2,
+    tags: false,
+    ajax: {
+        url: '/unidades_api',
+        dataType: 'json',
+        delay: 1000,
+        type: 'GET',
+        //quietMillis: 50,
+        data: function (busca) {
+            return {
+                term: busca
+            };
+        },
+        processResults: function (data) {
+
+           // Limitar o número de sugestões para no máximo 20
+            var limitaData = data.slice(0, 20);
+
+            return {
+                results: $.map(limitaData, function (item) {
+                    return {
+                        id: item.id,
+                        text: item.nome
+                    };
+                })
+            };
+        },
+        success: function (data) {
+            console.log('Sucesso:', data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error('Erro:', textStatus, errorThrown);
+        }
+    }
+});
+
+
+select2_local_partida.on('select2:select', function (e) {
+  // Limpe todas as opções existentes antes de adicionar a nova opção
+  //select2_local_partida.empty();
+
+  // Obtém os dados do item selecionado
+  dataPartida = e.params.data;
+
+  // Cria uma nova opção pré-selecionada
+  var option = new Option(dataPartida.text, dataPartida.id, true, true);
+
+  // Adiciona a nova opção e aciona um evento 'change'
+  select2_local_partida.append(option).trigger('change');
+
+  // Adiciona o valor (id) como parâmetro ao link de detalhamento
+  updateDetalharLink();
+});
+
+
+
+select2_local_destino.on('select2:select', function (e) {
+  // Limpe todas as opções existentes antes de adicionar a nova opção
+  //select2_local_partida.empty();
+
+  // Obtém os dados do item selecionado
+  dataDestino = e.params.data;
+
+  // Cria uma nova opção pré-selecionada
+  var option = new Option(dataDestino.text, dataDestino.id, true, true);
+
+  // Adiciona a nova opção e aciona um evento 'change'
+  select2_local_destino.append(option).trigger('change');
+
+  // Adiciona o valor (id) como parâmetro ao link de detalhamento
+  updateDetalharLink();
+});
+
+function updateDetalharLink() {
+    // Verifique se ambos os selects foram preenchidos
+    if (dataPartida && dataDestino) {
+        // Atualize o link de detalhamento com os parâmetros dos dois selects
+        var detalharLink = $('#detalhar-link');
+        detalharLink.attr('href', '<%= veiculos_path %>' + '?partida=' + dataPartida.id + '&destino=' + dataDestino.id);
+    }
+    else if (dataPartida && !dataDestino) {
+        // Atualize o link de detalhamento com os parâmetros dos dois selects
+        var detalharLink = $('#detalhar-link');
+        detalharLink.attr('href', '<%= veiculos_path %>' + '?partida=' + dataPartida.id);
+    }
+    else if (!dataPartida && dataDestino) {
+        // Atualize o link de detalhamento com os parâmetros dos dois selects
+        var detalharLink = $('#detalhar-link');
+        detalharLink.attr('href', '<%= veiculos_path %>' + '?destino=' + dataDestino.id);
+    }
+}
+
+
+
+</script>
+

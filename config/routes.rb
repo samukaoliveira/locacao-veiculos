@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get 'home', to: 'home#index'
+  get 'unidades_busca', to: 'unidades#unidades_busca'
 end

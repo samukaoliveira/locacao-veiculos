@@ -6,12 +6,6 @@
     <div id="centro-row" class="row align-items-center">
         <div class="col-10">
             <div class="row"> 
-                <div id="label-select-1" class="col-sm-3">
-                    <span class="text-light">Local de retirada: </span>
-                </div> 
-                <div id="select" class="col-sm-3">
-                    <select class="local_partida col-12" name="partida"></select>
-                </div>  
                 <div id="label-data-1" class="col-sm-1">
                     <span class="col-12 text-light">Data: </span>
                 </div> 
@@ -24,6 +18,12 @@
                 <div id="hora-1" class="col-sm-2">
                     <input type="time" min="09:00" max="18:00" class="col-12"  name="hr_partida" id="hr_partida">
                 </div>
+                <div id="label-select-1" class="col-sm-3">
+                    <span class="text-light">Local de retirada: </span>
+                </div> 
+                <div id="select" class="col-sm-3">
+                    <select class="local_partida col-12" name="partida"></select>
+                </div>  
             </div>
             
         </div> 
@@ -47,6 +47,7 @@
 //})
 
 //  Busca local de partida
+$(document).ready(function(){
 
   var select2_local_partida = $(".local_partida");
   var select2_local_destino = $(".local_destino");
@@ -147,6 +148,8 @@ select2_local_partida.on('select2:select', function (e) {
   select2_local_partida.append(option).trigger('change');
 
   // Adiciona o valor (id) como parâmetro ao link de detalhamento
+
+    
   updateDetalharLink();
 });
 
@@ -166,6 +169,7 @@ select2_local_destino.on('select2:select', function (e) {
   select2_local_destino.append(option).trigger('change');
 
   // Adiciona o valor (id) como parâmetro ao link de detalhamento
+
   updateDetalharLink();
 });
 
@@ -173,6 +177,7 @@ function updateDetalharLink() {
     // Verifique se ambos os selects foram preenchidos
     var dt_partida = document.getElementById("dt_partida").value;
     var hr_partida = document.getElementById("hr_partida").value;
+    debugger
     
     if (dataPartida && dataDestino) {
         // Atualize o link de detalhamento com os parâmetros dos dois selects
@@ -187,6 +192,6 @@ function updateDetalharLink() {
 }
 
 
-
+});
 </script>
 

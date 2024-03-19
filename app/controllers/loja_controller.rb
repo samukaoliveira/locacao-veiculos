@@ -36,6 +36,7 @@ include HTTParty
 
   def aluguel
     @parametros = session[:parametros]
+    @unidade_partida = Unidade.find(@parametros.first["partida"].to_i)
   end
 
   def locacao

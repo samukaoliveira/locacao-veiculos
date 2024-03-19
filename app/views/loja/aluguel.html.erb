@@ -24,22 +24,20 @@
                                 
                                 <table class="table">
                                 <tr>
-                                    <th>Max. de passageiros</th>
-                                    <th>Valor da diária</th>
-                                    <th>Ano</th>
-                                    <th>Disponível</th>
-                                    <th>Seguro Obrigatório</th>
-                                    <th>Seguro Extra/Vidros/Etc</th>
-                                    <th>Dias</th>
+                                    <th colspan="3">Local de Retirada</th>
+                                    <th colspan="2">Data da retirada</th>
+                                    <th colspan="2">Hora da retirada</th>
                                 </tr>
                                 <tr>
-                                    <td><%= @parametros %></td>
-                                    <td>Valor da diária</td>
-                                    <td>Ano</td>
-                                    <td>Disponível</td>
-                                    <td>Seguro Obrigatório</td>
-                                    <td>Seguro Extra/Vidros/Etc</td>
-                                    <td>Dias</td>
+                                    <td colspan="3"><%= @unidade_partida.nome %></td>
+                                    <td colspan="2"><%= Date.parse(@parametros.first["dt_partida"]).strftime("%d/%m/%Y") %></td>
+
+
+                                    <td colspan="2"><%= @parametros.first["hr_partida"] %></td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="7"></td>
                                 </tr>
                                 <tr>
                                     <th>Max. de passageiros</th>

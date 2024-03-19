@@ -35,6 +35,7 @@ include HTTParty
   end
 
   def aluguel
+    @reserva = Reserva.new
     @parametros = session[:parametros]
     @unidade_partida = Unidade.find(@parametros.first["partida"].to_i)
   end
@@ -61,6 +62,7 @@ include HTTParty
 
     def set_veiculo
       @veiculo = Veiculo.find(params[:id])
+      cookies[:veiculo] = [ id: @veiculo.id ]
     end
     
     def set_cliente_cookie

@@ -18,16 +18,17 @@ Rails.application.routes.draw do
       get 'reservas', to: 'admins#reservas'
     end
   end
-  resources :reservas, only: [:index, :show]
   resources :clientes do
     resources :enderecos
+    resources :reservas
   end
   get 'login_cliente', to: 'login_cliente#cliente_login'
   post 'logar_cliente', to: 'login_cliente#cliente_logar'
   get 'logout_cliente', to: 'login_cliente#cliente_logout'
   get 'recovery_cliente', to: 'login_cliente#cliente_recovery'
   post 'cliente_recovery_send', to: 'login_cliente#cliente_recovery_send'
-  resources :reservas
+  post 'cadastrar_reserva', to: 'reservas#create'
+  post 'reservas', to: 'reservas#show'
   resources :veiculos
   resources :marcas
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

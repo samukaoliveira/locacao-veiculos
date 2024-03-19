@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_18_174611) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_19_125011) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,7 +92,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_18_174611) do
     t.datetime "updated_at", null: false
     t.time "hr_inicial"
     t.time "hr_final"
+    t.boolean "seguro_extra"
+    t.bigint "unidade_id"
     t.index ["cliente_id"], name: "index_reservas_on_cliente_id"
+    t.index ["unidade_id"], name: "index_reservas_on_unidade_id"
     t.index ["veiculo_id"], name: "index_reservas_on_veiculo_id"
   end
 

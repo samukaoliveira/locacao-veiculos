@@ -1,5 +1,8 @@
 class ReservasController < ClientesController
   before_action :set_reserva, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token
+  before_action :set_cliente_cookie
+  before_action :recupera_create_failure, only: %i[ create update ]
 
   # GET /reservas or /reservas.json
   def index
@@ -8,6 +11,43 @@ class ReservasController < ClientesController
 
   # GET /reservas/1 or /reservas/1.json
   def show
+  end
+
+  def new
+  end
+
+  # GET /unidades/1/edit
+  def edit
+  end
+
+  # POST /unidades or /unidades.json
+  def create
+    @reserva = Reserva.new(reserva_params)
+    @reserva.veiculo_id = params[:reserva][:veiculo_id]
+    @reserva.cliente_id = @cliente.id
+
+    respond_to do |format|
+      if @reserva.save
+        format.html { redirect_to reserva_url(@reserva), notice: "Unidade was successfully created." }
+        format.json { render :show, status: :created, location: @reserva }
+      else
+        format.html { render 'loja/aluguel', status: :unprocessable_entity, notice: @reserva.errors.full_messages.join(', ') }
+        format.json { render json: @reserva.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /unidades/1 or /unidades/1.json
+  def update
+    respond_to do |format|
+      if @unidade.update(reserva_params)
+        format.html { redirect_to unidade_url(@reserva), notice: "reserva was successfully updated." }
+        format.json { render :show, status: :ok, location: @reserva }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @reserva.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
@@ -23,6 +63,22 @@ class ReservasController < ClientesController
 
     # Only allow a list of trusted parameters through.
     def reserva_params
-      params.require(:reserva).permit(:veiculo_id, :cliente_id, :tempo_espera, :valor_total, :dt_inicial, :dt_final, :pagamento_na_retirada)
+      params.require(:reserva).permit(:unidade_id, :veiculo_id, :cliente_id, :tempo_espera, :valor_total, :dt_inicial, :dt_final, :hr_inicial, :hr_final, :pagamento_na_retirada)
+    end
+
+    def set_cliente_cookie
+      if cookies[:cliente].present?
+        cliente_info = JSON.parse(cookies[:cliente])
+        cliente_id = cliente_info['id']
+        @cliente = Cliente.find(cliente_id)
+      end
+    end
+
+    def recupera_create_failure
+      @parametros = session[:parametros]
+      @unidade_partida = Unidade.find(@parametros.first["partida"].to_i)
+      veiculo_info = cookies[:veiculo].gsub(/[{}:]/, "").split("=>")
+      veiculo_id = veiculo_info.last.to_i
+      @veiculo = Veiculo.find(veiculo_id)
     end
 end

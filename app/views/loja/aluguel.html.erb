@@ -120,7 +120,7 @@
                                     </td>
                                     <td colspan="2">
                                         R$ <span id="valorTotal"></span>
-                                        <%= form.hidden_field :valor_total, as: :hidden, id: "valorTotal" %>
+                                        <%= form.hidden_field :valor_total, as: :hidden, id: "valTot" %>
                                     </td>
 
                                 </tr>
@@ -224,4 +224,10 @@
         });
     }
 
+
+ document.addEventListener('DOMContentLoaded', function() {
+        var valorSpan = document.getElementById('valorTotal');
+        var valorHidden = document.getElementById('valTot');
+        valorHidden.value = valorSpan.textContent;
+    });
 </script>

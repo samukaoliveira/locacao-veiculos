@@ -3,7 +3,13 @@
     <div class="justify-content-center">
       <table class="table">
         <td class="" >
-          <%= link_to "Loja", root_path, class:"nav-link d-inline #{ "text-secondary" unless controller.controller_name == 'loja'}" %>
+          <%= link_to root_path, class: "nav-link d-inline #{ 'text-secondary' unless controller.controller_name == 'loja'}" do %>
+  <div>
+    <p class="text-danger text-center fs-4 titulos-car">Sam<i class="bi bi-car-front">Car</i></p>
+    <p class="text-danger text-center mn">Aluguel de Veículos</p>
+  </div>
+<% end %>
+
         </td>
 
         <td class="" >

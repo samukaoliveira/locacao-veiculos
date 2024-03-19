@@ -7,6 +7,7 @@ class ReservasController < ClientesController
   # GET /reservas or /reservas.json
   def index
     @reservas = Reserva.all
+    @clientes = Cliente.all
   end
 
   # GET /reservas/1 or /reservas/1.json
@@ -48,13 +49,22 @@ class ReservasController < ClientesController
   # PATCH/PUT /unidades/1 or /unidades/1.json
   def update
     respond_to do |format|
-      if @unidade.update(reserva_params)
+      if @reserva.update(reserva_params)
         format.html { redirect_to unidade_url(@reserva), notice: "reserva was successfully updated." }
         format.json { render :show, status: :ok, location: @reserva }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @reserva.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @reserva.destroy
+
+    respond_to do |format|
+      format.html { redirect_to reservas_url, notice: "Unidade was successfully destroyed." }
+      format.json { head :no_content }
     end
   end
 

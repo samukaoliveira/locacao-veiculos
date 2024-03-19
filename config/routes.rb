@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       get 'clientes', to: 'admins#clientes_index'
       get 'initial', to: 'admins#initial'
       get 'reservas', to: 'admins#reservas'
+      get 'reservas/:id/edit', to: 'reservas#edit', as: 'edit_reserva'
+      get 'reservas/:id', to: 'reservas#destroy', as: 'destroy_reserva'
     end
   end
   resources :clientes do

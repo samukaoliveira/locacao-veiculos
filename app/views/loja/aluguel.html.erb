@@ -4,8 +4,8 @@
 
             <div class="rounded col-sm-3 sb-datalhes">
                 <div class="rounded diag-cards-datalhes text-center pt-4">
-                    <p class="titulos-car h3"><%# @veiculo.nome %></p>
-                    <%# no_image_check(@veiculo, :mid1_thumb) %>
+                    <p class="titulos-car h3"><%= @veiculo.nome %>&nbsp<%= @veiculo.ano %></p>
+                    <%= no_image_check(@veiculo, :mid1_thumb) %>
                 </div>
             </div>
 

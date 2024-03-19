@@ -41,10 +41,7 @@ class ReservasController < ClientesController
             end
           end
       else
-        respond_to do |format|
-          format.html { render 'loja/aluguel', notice: "Reserva já cadastrada" }
-          format.json { render json: @reserva.errors, status: :unprocessable_entity }
-        end
+        redirect_to "/loja/aluguel/#{@reserva.veiculo_id}", notice: "Veículo indisponível para esta data. Escolha outra data!"
       end
   end
 

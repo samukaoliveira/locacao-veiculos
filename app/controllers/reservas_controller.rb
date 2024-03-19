@@ -25,16 +25,27 @@ class ReservasController < ClientesController
     @reserva = Reserva.new(reserva_params)
     @reserva.veiculo_id = params[:reserva][:veiculo_id]
     @reserva.cliente_id = @cliente.id
+    dt_inicial = Date.strptime(params[:reserva][:dt_inicial], "%d/%m/%Y").strftime("%Y-%m-%d 00:00:00") + " -0300"
 
-    respond_to do |format|
-      if @reserva.save
-        format.html { redirect_to reserva_url(@reserva), notice: "Unidade was successfully created." }
-        format.json { render :show, status: :created, location: @reserva }
+    puts "dt_inicial: #{dt_inicial}"
+    @pre_reserva = Reserva.where(veiculo_id: @reserva.veiculo_id, dt_inicial: dt_inicial)
+    puts "@pre_reserva: #{@pre_reserva.inspect}"
+      if @pre_reserva.empty?
+          respond_to do |format|
+            if @reserva.save
+              format.html { redirect_to cliente_reservas_url(@reserva), notice: "Unidade was successfully created." }
+              format.json { render :show, status: :created, location: @reserva }
+            else
+              format.html { render 'loja/aluguel', status: :unprocessable_entity, notice: @reserva.errors.full_messages.join(', ') }
+              format.json { render json: @reserva.errors, status: :unprocessable_entity }
+            end
+          end
       else
-        format.html { render 'loja/aluguel', status: :unprocessable_entity, notice: @reserva.errors.full_messages.join(', ') }
-        format.json { render json: @reserva.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          format.html { render 'loja/aluguel', notice: "Reserva já cadastrada" }
+          format.json { render json: @reserva.errors, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   # PATCH/PUT /unidades/1 or /unidades/1.json

@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'recovery_cliente', to: 'login_cliente#cliente_recovery'
   post 'cliente_recovery_send', to: 'login_cliente#cliente_recovery_send'
   post 'cadastrar_reserva', to: 'reservas#create'
-  post 'reservas', to: 'reservas#show'
+  get 'reservas', to: 'reservas#index'
   resources :veiculos
   resources :marcas
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -21,6 +21,7 @@
                             <div class="container rounded diag-cards-datalhes p-4">
                                 
                                 <table class="table">
+                                    <%= notice %>
                                     <%= form_with(model: @reserva, url: cadastrar_reserva_path) do |form| %>
                                     <% if @reserva.errors.any? %>
                                         <div style="color: red">

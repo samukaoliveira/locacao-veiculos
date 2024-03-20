@@ -28,12 +28,12 @@
         <td><%= reserva.veiculo.nome %></td>
         <td><%= reserva.veiculo.marca.nome %></td>
         <td><%= reserva.veiculo.ano %></td>
-        <td><%= reserva.veiculo.valor %></td>
+        <td><%= number_to_currency(reserva.veiculo.valor) %></td>
         <td><%= reserva.dt_inicial %> a <%= reserva.dt_final %></td>
         <td><%# reserva.qt_diarias %></td>
         <td><%= reserva.seguro_extra %></td>
         <td><%= reserva.veiculo.unidade.nome %></td>
-        <td><%= reserva.valor_total %></td>
+        <td><%= number_to_currency(reserva.valor_total) %></td>
         <td><%= link_to "", edit_reserva_admins_path(reserva), class: "bi bi-pencil" %></td>
       <td><%= link_to "", destroy_reserva_admins_path(reserva), method: :delete, data: { confirm: "Tem certeza?" }, class: "bi bi-trash text-danger" %></td>
     </tr>

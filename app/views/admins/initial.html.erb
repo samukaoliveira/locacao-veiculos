@@ -8,58 +8,68 @@
 
         <div class="rounded col-sm-2">
                         
-            <div class="fw-bold card shadow text-center p-4">
-                <i class="bi bi-car-front-fill fs-3 text-primary"></i>
-                <p class="text-primary painel-link">Reservas Efetuadas este mês<%=  %></p>
-                <hr>
-                <p class="fw-bold"><%= @reservas.count %></p>
-                <%=  %>
+            <div class="fw-bold card shadow text-center p-4 h-100">
+                <div class="h-50">
+                    <i class="bi bi-car-front-fill fs-3 text-primary"></i>
+                    <p class="text-primary painel-link">Reservas Efetuadas este mês<%=  %></p>
+                </div>
+                    <hr>
+                    <p class="fw-bold"><%= @reservas.count %></p>
+                    <%=  %>
             </div>
         </div>
 
          <div class="rounded col-sm-2">
                         
-            <div class="fw-bold card shadow text-center p-4">
-                <i class="bi bi-cash-coin fs-3 text-dark"></i>
-                <p class="text-dark painel-link">Reservas Com pagamento pendente<%=  %></p>
-                <hr>
-                <p class="fw-bold"><%= @reservas.count %></p>
-                <%=  %>
+            <div class="fw-bold card shadow text-center p-4 h-100">
+                <div class="h-50">
+                    <i class="bi bi-cash-coin fs-3 text-dark"></i>
+                    <p class="text-dark painel-link">Reservas Com pagamento pendente<%=  %></p>
+                </div>
+                    <hr>
+                    <p class="fw-bold"><%= @reservas.count %></p>
+                    <%=  %>
             </div>
         </div>
 
         <div class="rounded col-sm-2">
                         
-            <div class="fw-bold card shadow text-center p-4">
-                <i class="bi bi-ui-checks-grid fs-3 text-warning"></i>
-                <p class="text-warning painel-link">Marcas sem veículos cadastrados<%=  %></p>
-                <hr>
-                <% @marcas_sem.each do |marca| %>
-                <p class="fw-bold"><%= marca.nome %></p>
-                <% end %>
-                <p class="fw-bold"><%= @aviso %></p>
+            <div class="fw-bold card shadow text-center p-4 h-100">
+                <div class="h-50">
+                    <i class="bi bi-ui-checks-grid fs-3 text-warning"></i>
+                    <p class="text-warning painel-link">Marcas sem veículos cadastrados<%=  %></p>
+                </div>
+                    <hr>
+                    <% @marcas_sem.each do |marca| %>
+                    <p class="fw-bold"><%= marca.nome %></p>
+                    <% end %>
+                    <p class="fw-bold"><%= @aviso %></p>
             </div>
         </div>
 
         <div class="rounded col-sm-2">
                         
-            <div class="fw-bold card shadow text-center p-4 ">
-                <i class="bi bi-car-front-fill fs-3 text-success"></i>
-                <p class="text-success painel-link">Veículos Reservados<%=  %></p>
-                <hr>
-                <p class="fw-bold"><%= @reservas.pluck(:veiculo_id).uniq.count %>/<%= @veiculos.count %></p>
-                <%=  %>
+            <div class="fw-bold card shadow text-center p-4 h-100">
+                <div class="h-50">
+                    <i class="bi bi-car-front-fill fs-3 text-success"></i>
+                    <p class="text-success painel-link">Veículos Reservados<%=  %></p>
+                </div>
+                    <hr>
+                    <p class="fw-bold"><%= @reservas.pluck(:veiculo_id).uniq.count %>/<%= @veiculos.count %></p>
+                    <%=  %>
             </div>
         </div>
 
         <div class="rounded col-sm-2">
                         
-            <div class="fw-bold card shadow text-center p-4 ">
-                <i class="bi bi-clock-history fs-3 text-danger"></i>
-                <p class="text-danger painel-link">Devoluções Pendentes<%=  %></p>
-                <hr>
-                <p class="fw-bold"><%= @reservas.count %></p>
-                <%=  %>
+            <div class="fw-bold card shadow text-center p-4 h-100">
+                <div class="h-50">
+                    <i class="bi bi-clock-history fs-3 text-danger"></i>
+                    <p class="text-danger painel-link">Devoluções Pendentes<%=  %></p>
+                </div>
+                    <hr>
+                    <p class="fw-bold"><%= @reservas.count %></p>
+                    <%=  %>
             </div>
         </div>
 

@@ -109,7 +109,7 @@
                                         Valor total
                                     </td>
                                     <td colspan="2">
-                                        <%= number_to_currency(@reserva.valor_total) %>
+                                        <span id="valor_total"><%= number_to_currency(@reserva.valor_total) %></span>
                                     </td>
 
                                 </tr>
@@ -162,13 +162,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function finalizaPagamento(){
         //e.preventDefault();
-        const pre_total = document.getElementById("valorTotal").innerText;
-        const total = pre_total.replace(",", ".");
+        const pre_total = document.getElementById("valor_total").innerText;
+        const total = pre_total.replace(",", "");
+        const valor_total = total.replace("R$ ", "")
+        const pre_cartao = document.getElementById("cartao").value;
+        const numeroCartao = pre_cartao.replace(/\s/g, '');
+        const numeroBandeira = parseInt(numeroCartao.substr(0, 6));
+        const cardName = document.getElementById("cartao_nome").value;
+        const expMonth = document.getElementById("mes").value;
+        const expYear = document.getElementById("ano").value;
+        const cvv = document.getElementById("cvv").value;
 
         PagSeguroDirectPayment.getPaymentMethods({
-            amount: 50000,//parseFloat(total).toFixed(2),
+            amount: valor_total,//parseFloat(total).toFixed(2),
             success: function(response) {
-                console.log(response);
 
                 PagSeguroDirectPayment.onSenderHashReady(function(response){
                     if(response.status == 'error') {
@@ -176,14 +183,57 @@ document.addEventListener('DOMContentLoaded', function() {
                         return false;
                     }
                     var hash = response.senderHash; //Hash estará disponível nesta variável.
+                    PagSeguroDirectPayment.getBrand({
+                        cardBin: numeroBandeira,
+                        success: function(response) {
+                        //bandeira encontrada
+                        console.log(response);
+                            PagSeguroDirectPayment.getInstallments({
+                                amount: valor_total,
+                                maxInstallmentNoInterest: 3,
+                                brand: 'master',
+                                success: function(response){
+                                    console.log(response);
+                                    PagSeguroDirectPayment.createCardToken({
+                                        cardNumber: numeroCartao, // Número do cartão de crédito
+                                        brand: 'master', // Bandeira do cartão
+                                        cvv: cvv, // CVV do cartão
+                                        expirationMonth: expMonth, // Mês da expiração do cartão
+                                        expirationYear: expYear, // Ano da expiração do cartão, é necessário os 4 dígitos.
+                                        success: function(response) {
+                                            console.log(response);
+                                                // Retorna o cartão tokenizado.
+                                        },
+                                        error: function(response) {
+                                                    // Callback para chamadas que falharam.
+                                        },
+                                        complete: function(response) {
+                                                // Callback para todas chamadas.
+                                        }
+                                        });
+                                        // Retorna as opções de parcelamento disponíveis
+                                },
+                                    error: function(response) {
+                                        // callback para chamadas que falharam.
+                                },
+                                    complete: function(response){
+                                        // Callback para todas chamadas.
+                                }
+                            });
+                        },
+                        error: function(response) {
+                        //tratamento do erro
+                        },
+                        complete: function(response) {
+                        //tratamento comum para todas chamadas
+                        }
+                    });
                 });
             },
             error: function(response){
-                debugger;
                 console.log(response);
             },
             complete: function(response){
-                debugger;
                 console.log(response);
             }
         });

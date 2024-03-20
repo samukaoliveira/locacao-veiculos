@@ -7,3 +7,7 @@ import * as select2 from 'select2'
 import jquery from 'jquery';
 window.jQuery = jquery;
 window.$ = jquery;
+
+import Inputmask from 'inputmask';
+
+//=require jquery.mask.min.js

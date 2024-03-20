@@ -123,6 +123,8 @@
                     
                     </div>
 
+                    <%= render 'cartao' %>
+
                     <div class="row">
                         <div class="rounded sb-datalhes col-8 offset-2">
                             <%# link_to loja_locacao_path, class: "text-decoration-none" do %>
@@ -145,6 +147,16 @@
 
 <script>
 
+document.addEventListener('DOMContentLoaded', function() {
+  // Aplicar a máscara para um campo de telefone
+//  Inputmask({ mask: '9999 9999 9999 9999' }).mask(document.getElementById('cartao'));
+
+  if($('#cartao').length) $('#cartao').mask('0000 0000 0000 0000', {reverse: true});
+  if($('#mes').length) $('#mes').mask('99', {reverse: true});
+  if($('#ano').length) $('#ano').mask('9999', {reverse: true});
+  if($('#cvc').length) $('#cvc').mask('999', {reverse: true});
+
+});
    
     PagSeguroDirectPayment.setSessionId("<%= @session_id %>");
 

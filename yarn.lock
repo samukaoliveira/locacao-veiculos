@@ -85,6 +85,31 @@ braces@~3.0.2:
   optionalDependencies:
     fsevents "~2.3.2"
 
+color-convert@0.5.x:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-0.5.3.tgz#bdb6c69ce660fadffe0b0007cc447e1b9f7282bd"
+  integrity sha512-RwBeO/B/vZR3dfKL1ye/vx8MHZ40ugzpyfeVG5GsiuGnrlMWe2o8wxBbLCpw9CsxV+wHuzYlCiWnybrIA0ling==
+
+color-name@1.0.x:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.0.1.tgz#6b34b2b29b7716013972b0b9d5bedcfbb6718df8"
+  integrity sha512-ipj55CYipJcmYpiDwpDRZ91iMJOnsTW9wICiE1efyPWadY2FapkgfTvB8IJLxf5muHHrpKVVxhEnv03UIshOJQ==
+
+color-string@0.2.x:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/color-string/-/color-string-0.2.4.tgz#221ff64234f71aaa3e13bc8c7e8c95f3cdd8f81a"
+  integrity sha512-1H8eG8inthYR165AUuww8VNXnH+UWaoX4IKPHGFhCKjABwJS0CGGQ6Q5fJJVnpPs+9wN0/jWPe504oQi8OSJdA==
+  dependencies:
+    color-name "1.0.x"
+
+color@0.7.x:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/color/-/color-0.7.3.tgz#ab3ae4bc6cb8cfadb5d749c40f34aea088104f89"
+  integrity sha512-vK6kZPf/CMuUR363c8jgulaP/45liRfkDJVijx5ZLhk8MVg5Yzst1ZHMpAbRIBkbhMsQZmwcD2sjpCpWCx06Tw==
+  dependencies:
+    color-convert "0.5.x"
+    color-string "0.2.x"
+
 esbuild-android-64@0.15.18:
   version "0.15.18"
   resolved "https://registry.yarnpkg.com/esbuild-android-64/-/esbuild-android-64-0.15.18.tgz#20a7ae1416c8eaade917fb2453c1259302c637a5"
@@ -271,6 +296,14 @@ jquery@^3.7.1:
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
   integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
 
+mask@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/mask/-/mask-0.2.2.tgz#5179bb9a6dc7bf6c54d2f62d491d4a004af9cd37"
+  integrity sha512-SchB/Cdmr544vO/HVTDJ85tzzY9KqRGmNV4Eez5A5CjS1f0XM9cAxVHUlgo2s8xO2ksYJJ8To9NwOoWSF0DU1g==
+  dependencies:
+    q "1.0.x"
+    zanimo "1.1.x"
+
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
@@ -280,6 +313,23 @@ picomatch@^2.0.4, picomatch@^2.2.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
+
+q@1.0.x:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/q/-/q-1.0.1.tgz#11872aeedee89268110b10a718448ffb10112a14"
+  integrity sha512-18MnBaCeBX9sLRUdtxz/6onlb7wLzFxCylklyO8n27y5JxJYaGLPu4ccyc5zih58SpEzY8QmfwaWqguqXU6Y+A==
+
+q@1.1.x:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/q/-/q-1.1.2.tgz#6357e291206701d99f197ab84e57e8ad196f2a89"
+  integrity sha512-ROtylwux7Vkc4C07oKE/ReigUmb33kVoLtcR4SJ1QVqwaZkBEDL3vX4/kwFzIERQ5PfCl0XafbU8u2YUhyGgVA==
+
+qanimationframe@2.1.x:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/qanimationframe/-/qanimationframe-2.1.4.tgz#aac3c0763c53b45e669ab51f0eac660adb77ccfa"
+  integrity sha512-o42FNr+l94fW8QKVP7ByEnusCkKq7JqEAnTK49X1fNoCE1JP0+ALOI6LWIM/UNgY/547ebr/ES+xGQRylUe+kA==
+  dependencies:
+    q "1.1.x"
 
 readdirp@~3.6.0:
   version "3.6.0"
@@ -313,3 +363,18 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
+
+vendor-prefix@0.1.x:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/vendor-prefix/-/vendor-prefix-0.1.0.tgz#d7be53ab6e4879fb11f9ea33696e59c7dc29497c"
+  integrity sha512-wqf86z46nMy/BGM9uYB8YLY9Iuipgyf9wrEI3XtnuHO18UVe/xuoxb61JAR9mjPHCzRU7lCiENG763bHfqPAiw==
+
+zanimo@1.1.x:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/zanimo/-/zanimo-1.1.3.tgz#8c1fa7bbedc08b671fcce9f6bbe19ac23dae8017"
+  integrity sha512-bzorJgiUj7v4Xtu4pvrFen+azU8RVGmPJT8Dfdhk1IXGfnrtYcnqlfYNmkiUXGfzickINBgkOLkjLIeTmNkJqQ==
+  dependencies:
+    color "0.7.x"
+    q "1.1.x"
+    qanimationframe "2.1.x"
+    vendor-prefix "0.1.x"

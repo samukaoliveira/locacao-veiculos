@@ -1,10 +1,11 @@
 class LojaController < ClientesController
 include HTTParty
-  before_action :set_veiculo, except: :index
+  before_action :set_veiculo, except: [ :index, :pagamento ] 
   before_action :set_cliente_cookie
   after_action :capturar_destino
   before_action :authenticate_user!, only: %i[ aluguel locacao ]
   before_action :set_token_pagamento, only: %i[ aluguel locacao ]
+  before_action :set_reserva, only: %i[ pagamento ]
 
   def index
     partida = params[:partida]
@@ -37,13 +38,28 @@ include HTTParty
   def aluguel
     @reserva = Reserva.new
     @parametros = session[:parametros]
-    @unidade_partida = Unidade.find(@parametros.first["partida"].to_i)
+    unless @parametros.first["partida"].blank?
+      @unidade_partida = Unidade.find(@parametros.first["partida"].to_i)
+    else
+      redirect_to root_path, notice: "Escolha uma data."
+    end
   end
 
   def locacao
   end
 
+  def pagamento
+  end
+
   private
+
+    def set_reserva
+      @reserva = Reserva.find(params[:id])
+    end
+
+    def set_cliente
+      @cliente = Cliente.find(params[:cliente_id])
+    end
 
     def set_token_pagamento
       email = "mucabatera@gmail.com"

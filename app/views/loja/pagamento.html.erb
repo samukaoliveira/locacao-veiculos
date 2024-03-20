@@ -1,6 +1,9 @@
+<h1 class="text-center">Pagamento</h1>
+
 <div class="text-center text-danger h-10 d-inline-block">
     <%= notice %>
 </div>
+
 <div class="container carrosel-cars">
     <div class="row justify-content-center">
 
@@ -8,8 +11,8 @@
 
             <div class="rounded col-sm-3 sb-datalhes">
                 <div class="rounded diag-cards-datalhes text-center pt-4">
-                    <p class="titulos-car h3"><%= @veiculo.nome %></p>
-                    <%= no_image_check(@veiculo, :mid1_thumb) %>
+                    <p class="titulos-car h3"><%= @reserva.veiculo.nome %></p>
+                    <%= no_image_check(@reserva.veiculo, :mid1_thumb) %>
                 </div>
             </div>
 
@@ -29,11 +32,11 @@
                                     <th colspan="2">Hora da retirada</th>
                                 </tr>
                                 <tr>
-                                    <td colspan="3"><%= @unidade_partida.nome %></td>
-                                    <td colspan="2"><%= Date.parse(@parametros.first["dt_partida"]).strftime("%d/%m/%Y") %></td>
+                                    <td colspan="3"><%= @reserva.veiculo.unidade.nome %></td>
+                                    <td colspan="2"><%= @reserva.dt_inicial %></td>
 
 
-                                    <td colspan="2"><%= @parametros.first["hr_partida"] %></td>
+                                    <td colspan="2"><%= @reserva.hr_inicial %></td>
 
                                 </tr>
                                 <tr>
@@ -49,14 +52,14 @@
                                     <th>Dias</th>
                                 </tr>
                                 <tr>
-                                <td><%= @veiculo.qnt_passageiros %>
+                                <td><%= @reserva.veiculo.qnt_passageiros %>
                                 </td>
                                 <td>
-                                    <%= number_to_currency(@veiculo.valor) %>
-                                    <input type="hidden" id="valorDiaria" value="<%= @veiculo.valor %>">
+                                    <%= number_to_currency(@reserva.veiculo.valor) %>
+                                    <input type="hidden" id="valorDiaria" value="<%= @reserva.veiculo.valor %>">
                                 </td>
                                 <td>
-                                    <%= @veiculo.ano %>
+                                    <%= @reserva.veiculo.ano %>
                                 </td>
                                 <td>
                                     <% %>
@@ -106,7 +109,7 @@
                                         Valor total
                                     </td>
                                     <td colspan="2">
-                                        R$ <span id="valorTotal"></span>
+                                        <%= number_to_currency(@reserva.valor_total) %>
                                     </td>
 
                                 </tr>
@@ -142,39 +145,7 @@
 
 <script>
 
-    function atualizaTotais(){
-
-    const qtDias = document.getElementById("qtDias").value;
-    const valorDiaria = document.getElementById("valorDiaria").value;
-    const valorTotal = document.getElementById("valorTotal");
-    const totalSeguros = document.getElementById("totalSeguros");
-    const seguroExtra = document.getElementById("seguroExtra").value;
-    const totalDiarias = document.getElementById("totalDiarias");
-
-    
-    let somaSegExt = 0
-
-    if (seguroExtra == 1) {
-        somaSegExt = (parseInt(qtDias) * valorDiaria) * 0.08;
-    } 
-
-    let somaDiariass = parseInt(qtDias) * valorDiaria;
-    replaceDiarias = somaDiariass.toFixed(2);
-    totalDiarias.innerHTML = replaceDiarias.replace(".", ",");
-
-    let somaSeguros = (parseInt(qtDias) * valorDiaria) * 0.1;
-    replaceSeguros = somaSeguros.toFixed(2);
-    totalSeguros.innerHTML = replaceSeguros.replace(".", ",");
-
-    let somaTotal = (parseInt(qtDias) * valorDiaria) + somaSeguros + somaSegExt;
-    replaceTotal = somaTotal.toFixed(2);
-    valorTotal.innerHTML = replaceTotal.replace(".", ",");
-
-    }
-
-    atualizaTotais();
-
-
+   
     PagSeguroDirectPayment.setSessionId("<%= @session_id %>");
 
     function finalizaPagamento(){

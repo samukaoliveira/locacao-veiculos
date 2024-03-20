@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'loja/veiculo/:id', to: 'loja#veiculo', as: 'loja_veiculo'
   get 'loja/aluguel/:id', to: 'loja#aluguel', as: 'loja_aluguel'
   get 'loja/locacao/:id', to: 'loja#locacao', as: 'loja_locacao'
+  get 'loja/pagamento/:id', to: 'loja#pagamento', as: 'loja_pagamento'
   root 'loja#index'
   get 'login_admin', to: 'login_admin#login'
   post 'logar_admin', to: 'login_admin#logar'
@@ -22,7 +23,8 @@ Rails.application.routes.draw do
   end
   resources :clientes do
     resources :enderecos
-    resources :reservas
+    get 'reservas/:id', to: 'reservas#show', as: 'reserva_show'
+    get 'pagamento/:id', to: 'loja#pagamento', as: 'loja_pagamento'
   end
   get 'login_cliente', to: 'login_cliente#cliente_login'
   post 'logar_cliente', to: 'login_cliente#cliente_logar'

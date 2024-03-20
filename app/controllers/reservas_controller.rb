@@ -12,6 +12,7 @@ class ReservasController < ClientesController
 
   # GET /reservas/1 or /reservas/1.json
   def show
+    @pagar = true if @reserva.status == 0
   end
 
   def new
@@ -34,7 +35,7 @@ class ReservasController < ClientesController
       if @pre_reserva.empty?
           respond_to do |format|
             if @reserva.save
-              format.html { redirect_to cliente_reservas_url(@reserva), notice: "Unidade was successfully created." }
+              format.html { redirect_to cliente_reserva_show_path(@cliente, @reserva), notice: "Unidade was successfully created." }
               format.json { render :show, status: :created, location: @reserva }
             else
               format.html { render 'loja/aluguel', status: :unprocessable_entity, notice: @reserva.errors.full_messages.join(', ') }
@@ -72,6 +73,10 @@ class ReservasController < ClientesController
     # Use callbacks to share common setup or constraints between actions.
     def set_reserva
       @reserva = Reserva.find(params[:id])
+    end
+
+    def set_cliente
+      @cliente = Cliente.find(params[:cliente_id])
     end
 
     

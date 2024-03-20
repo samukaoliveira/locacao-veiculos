@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_19_125011) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_20_134227) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,6 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_19_125011) do
     t.time "hr_final"
     t.boolean "seguro_extra"
     t.bigint "unidade_id"
+    t.integer "status", default: 0
     t.index ["cliente_id"], name: "index_reservas_on_cliente_id"
     t.index ["unidade_id"], name: "index_reservas_on_unidade_id"
     t.index ["veiculo_id"], name: "index_reservas_on_veiculo_id"

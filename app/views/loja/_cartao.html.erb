@@ -11,11 +11,15 @@
       <input type="text" class="col-1" placeholder="AAAA" id="ano">
     </p>
     <p>
-      <input type="text" class="col-6" placeholder="4111 1111 1111 1111" id="cartao">
+      <input type="text" class="col-6" placeholder="4111 1111 1111 1111" id="cartao"  onchange="atualizaParcelas();">
       <input type="text" class="col-1" placeholder="CVV" id="cvv">
       <span class="col-1" id="bandeira">
+          <select id="qtParcelas" name="qtParcelas">
+          </select>
     </p>
     <p>
       <input type="submit" value="Pagar" class="btn btn-success fs-5" onclick="finalizaPagamento();">
     </p>
+
+  
   </form>

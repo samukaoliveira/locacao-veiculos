@@ -12,6 +12,7 @@
             <div class="rounded col-sm-3 sb-datalhes">
                 <div class="rounded diag-cards-datalhes text-center pt-4">
                     <p class="titulos-car h3"><%= @reserva.veiculo.nome %></p>
+                    <input type="hidden" value="<%= @reserva.veiculo.id %>" id="veiculo_id">
                     <%= no_image_check(@reserva.veiculo, :mid1_thumb) %>
                 </div>
             </div>
@@ -172,6 +173,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const expMonth = document.getElementById("mes").value;
         const expYear = document.getElementById("ano").value;
         const cvv = document.getElementById("cvv").value;
+        const veiculo_id = document.getElementById("veiculo_id").value;
+        const qt_parcelas = document.getElementById("qtParcelas").value;
 
         PagSeguroDirectPayment.getPaymentMethods({
             amount: valor_total,//parseFloat(total).toFixed(2),
@@ -196,15 +199,23 @@ document.addEventListener('DOMContentLoaded', function() {
                                 success: function(response){
                                     console.log(response);
                                     console.log("Valor das parcelas calculado");
+                                    debugger
                                     PagSeguroDirectPayment.createCardToken({
                                         cardNumber: numeroCartao, // Número do cartão de crédito
-                                        brand: response.brand.name, // Bandeira do cartão
+                                        brand: response.installments[0], // Bandeira do cartão
                                         cvv: cvv, // CVV do cartão
                                         expirationMonth: expMonth, // Mês da expiração do cartão
                                         expirationYear: expYear, // Ano da expiração do cartão, é necessário os 4 dígitos.
                                         success: function(response) {
                                             console.log(response);
                                                 // Retorna o cartão tokenizado.
+                                            $.post("/loja/confirma_pagamento/"+veiculo_id, {
+                                                token: response.card.token,
+                                                senderHash: hash,
+                                                qt_parcelas: qt_parcelas,
+                                            }, function(data, status) {
+                                                console.log(data)
+                                            })
                                         },
                                         error: function(response) {
                                                     // Callback para chamadas que falharam.
@@ -284,12 +295,11 @@ function atualizaParcelas(){
                                         // Retorna as opções de parcelamento disponíveis
                                     var select = document.getElementById("qtParcelas");
                                     select.innerHTML = "";
-                                    debugger
                                     // Adiciona uma opção para cada parcela
                                     response.installments[brandName].forEach(function(parcela, index) {
                                         var option = document.createElement("option");
                                         var juros = parcela.interestFree ? ' sem' : ' com';
-                                        option.text = (index + 1) + 'x de R$ ' + parseFloat(parcela.installmentAmount).toFixed(2).replace(".", ",") + juros + ' juros';
+                                        option.text = (index + 1) + 'x de R$ ' + parseFloat(parcela.installmentAmount).toFixed(2).replace(".", ",") + juros + ' juros - Total de R$ ' + parseFloat(parcela.totalAmount).toFixed(2).replace(".", ",");
                                         select.add(option);
                                     });
                                 },

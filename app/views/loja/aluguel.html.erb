@@ -84,7 +84,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <%= form.select :qt_dias, (1..7), {}, { onchange: 'atualizaTotais();' } %>
+                                    <%= form.select :qt_dias, (1..7), {}, { id: "qtDias", onchange: 'atualizaTotais();' } %>
                                 </td>
                                 </tr>
                                 <tr>
@@ -157,6 +157,7 @@
     const qtDias = document.getElementById("qtDias").value;
     const valorDiaria = document.getElementById("valorDiaria").value;
     const valorTotal = document.getElementById("valorTotal");
+    const valTot = document.getElementById("valTot");
     const totalSeguros = document.getElementById("totalSeguros");
     const seguroExtra = document.getElementById("seguroExtra").value;
     const totalDiarias = document.getElementById("totalDiarias");
@@ -179,7 +180,7 @@
     let somaTotal = (parseInt(qtDias) * valorDiaria) + somaSeguros + somaSegExt;
     replaceTotal = somaTotal.toFixed(2);
     valorTotal.innerHTML = replaceTotal.replace(".", ",");
-
+    valTot.value = replaceTotal.replace(".", ",");
     }
 
     atualizaTotais();

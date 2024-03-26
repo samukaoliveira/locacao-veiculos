@@ -1,4 +1,5 @@
 class Cliente < ApplicationRecord
+include BCrypt
     has_many :enderecos
 
     validates :nome, presence: true
@@ -10,5 +11,14 @@ class Cliente < ApplicationRecord
 
     def self.login(email, password)
         Cliente.find_by(email: email, password: password)
+    end
+
+    def password
+        @password ||= Password.new(password_hash)
+    end
+
+    def password=(new_password)
+        @password ||= Password.create(new_password)
+        self.password_hash = @password
     end
 end

@@ -42,6 +42,8 @@ gem 'credit_card_validator'
 gem 'httparty'
 
 gem 'jquery-mask-plugin', '~> 1.15'
+
+gem 'bcrypt'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

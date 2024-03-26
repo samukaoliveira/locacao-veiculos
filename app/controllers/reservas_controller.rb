@@ -5,9 +5,9 @@ class ReservasController < ClientesController
 
   # GET /reservas or /reservas.json
   def index
-    @reservas = Reserva.all
-    @clientes = Cliente.all
+    @reservas = Reserva.where(cliente_id: @cliente.id)
   end
+
 
   # GET /reservas/1 or /reservas/1.json
   def show

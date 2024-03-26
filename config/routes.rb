@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'loja/aluguel/:id', to: 'loja#aluguel', as: 'loja_aluguel'
   get 'loja/locacao/:id', to: 'loja#locacao', as: 'loja_locacao'
   get 'loja/pagamento/:id', to: 'loja#pagamento', as: 'loja_pagamento'
-  post 'loja/confirma_pagamento/:id', to: 'loja#confirma_pagamento', as: 'loja_confirma_pagamento'
+  post 'loja/confirma_pagto/:id', to: 'loja#confirma_pagto', as: 'loja_confirma_pagto'
   root 'loja#index'
   get 'login_admin', to: 'login_admin#login'
   post 'logar_admin', to: 'login_admin#logar'

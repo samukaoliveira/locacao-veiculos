@@ -40,7 +40,7 @@
     </tr>
   <table>
 
-    <%= link_to "Ir para pagamento", cliente_loja_pagamento_path(@cliente, @reserva), class: "btn btn-success fs-4" if @pagar.nil? %>
+    <%= link_to "Ir para pagamento", cliente_loja_pagamento_path(@cliente, @reserva), method: :post, class: "btn btn-success fs-4" if @pagar.nil? %>
 
     <%= link_to "Voltar para Reservas", '/reservas', class: "m-3 btn btn-secondary fs-7" if @pagar.nil? %>
 </div>

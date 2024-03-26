@@ -20,6 +20,7 @@
                     <input type="password" id="password" class="form-control mt-1" placeholder="Senha" name="password">
                 </div>
 
+                <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token">
                 <button class="btn btn-dark h3 mb-3 font-wight-normal mt-4" type="submit">Entrar</button>
             </form>
             <div class="text-end">

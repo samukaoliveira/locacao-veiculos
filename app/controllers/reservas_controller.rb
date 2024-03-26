@@ -1,6 +1,5 @@
 class ReservasController < ClientesController
   before_action :set_reserva, only: %i[ show edit update destroy ]
-  skip_before_action :verify_authenticity_token
   before_action :set_cliente_cookie
   before_action :recupera_create_failure, only: %i[ create update ]
 

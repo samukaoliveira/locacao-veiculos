@@ -13,6 +13,7 @@
                 <div class="rounded diag-cards-datalhes text-center pt-4">
                     <p class="titulos-car h3"><%= @reserva.veiculo.nome %></p>
                     <input type="hidden" value="<%= @reserva.veiculo.id %>" id="veiculo_id">
+                    <input type="hidden" value="<%= @reserva.id %>" id="reserva_id">
                     <%= no_image_check(@reserva.veiculo, :mid1_thumb) %>
                 </div>
             </div>
@@ -173,8 +174,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const expMonth = document.getElementById("mes").value;
         const expYear = document.getElementById("ano").value;
         const cvv = document.getElementById("cvv").value;
-        const veiculo_id = document.getElementById("veiculo_id").value;
+        const reserva_id = document.getElementById("reserva_id").value;
         const qt_parcelas = document.getElementById("qtParcelas").value;
+        window.CSRFtoken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
         PagSeguroDirectPayment.getPaymentMethods({
             amount: valor_total,//parseFloat(total).toFixed(2),
@@ -199,7 +201,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                 success: function(response){
                                     console.log(response);
                                     console.log("Valor das parcelas calculado");
-                                    debugger
                                     PagSeguroDirectPayment.createCardToken({
                                         cardNumber: numeroCartao, // Número do cartão de crédito
                                         brand: response.installments[0], // Bandeira do cartão
@@ -209,13 +210,19 @@ document.addEventListener('DOMContentLoaded', function() {
                                         success: function(response) {
                                             console.log(response);
                                                 // Retorna o cartão tokenizado.
-                                            $.post("/loja/confirma_pagamento/"+veiculo_id, {
+                                                
+
+                                            $.post("/loja/confirma_pagto/"+reserva_id, {
                                                 token: response.card.token,
+                                                authenticity_token: csrfToken,
                                                 senderHash: hash,
                                                 qt_parcelas: qt_parcelas,
                                             }, function(data, status) {
                                                 console.log(data)
-                                            })
+                                            }).fail(function(xhr, status, error) {
+                                                console.error(xhr.responseText);
+                                            });
+                                            
                                         },
                                         error: function(response) {
                                                     // Callback para chamadas que falharam.

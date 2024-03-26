@@ -29,8 +29,8 @@
         <td><%= reserva.veiculo.marca.nome %></td>
         <td><%= reserva.veiculo.ano %></td>
         <td><%= number_to_currency(reserva.veiculo.valor) %></td>
-        <td><%= reserva.dt_inicial %> a <%= reserva.dt_final %></td>
-        <td><%# reserva.qt_diarias %></td>
+        <td><%= reserva.dt_inicial.to_formatted_s(:short) %> a <%= (reserva.dt_inicial + (reserva.qt_dias).to_i.days).to_formatted_s(:short) %></td>
+        <td><%= reserva.qt_dias %></td>
         <td><%= reserva.seguro_extra %></td>
         <td><%= reserva.veiculo.unidade.nome %></td>
         <td><%= number_to_currency(reserva.valor_total) %></td>

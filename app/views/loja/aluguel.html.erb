@@ -22,7 +22,7 @@
                                     <div class="text-center text-danger h-10 d-inline-block justify-content-center fw-bold">
                                         <%= notice %>
                                     </div>
-                                    <%= form_with(model: @reserva, url: cadastrar_reserva_path) do |form| %>
+                                    <%= form_with(model: @reserva, url: cadastrar_reserva_path(qt_dias: params[:qtDias])) do |form| %>
                                     <% if @reserva.errors.any? %>
                                         <div style="color: red">
                                         <h2><%= pluralize(@reserva.errors.count, "error") %> prohibited this veiculo from being saved:</h2>
@@ -84,15 +84,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select id="qtDias" name="qtDias" onchange="atualizaTotais();">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                    </select>
+                                    <%= form.select :qt_dias, (1..7), {}, { onchange: 'atualizaTotais();' } %>
                                 </td>
                                 </tr>
                                 <tr>

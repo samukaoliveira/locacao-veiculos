@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1 class="text-center">Reservas</h1>
+<h1 class="text-center">Detalhes da Reserva</h1>
 
 <div id="reservas" class=" m-5">
 
@@ -29,7 +29,7 @@
         <td><%= @reserva.veiculo.marca.nome %></td>
         <td><%= @reserva.veiculo.ano %></td>
         <td><%= number_to_currency(@reserva.veiculo.valor) %></td>
-        <td><%= @reserva.dt_inicial %> a <%= @reserva.dt_final %></td>
+        <td><%= @reserva.dt_inicial.to_formatted_s(:short) %> a <%= (@reserva.dt_inicial + (@reserva.qt_dias).to_i.days).to_formatted_s(:short) %></td>
         <td><%# @reserva.qt_diarias %></td>
         <td><%= @reserva.seguro_extra %></td>
         <td><%= @reserva.veiculo.unidade.nome %></td>
@@ -40,6 +40,8 @@
     </tr>
   <table>
 
-    <%= link_to "Ir para pagamento", cliente_loja_pagamento_path(@cliente, @reserva), class: "btn btn-success" if @pagar.nil? %>
+    <%= link_to "Ir para pagamento", cliente_loja_pagamento_path(@cliente, @reserva), class: "btn btn-success fs-4" if @pagar.nil? %>
+
+    <%= link_to "Voltar para Reservas", '/reservas', class: "m-3 btn btn-secondary fs-7" if @pagar.nil? %>
 </div>
 

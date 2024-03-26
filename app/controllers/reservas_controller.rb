@@ -86,7 +86,7 @@ class ReservasController < ClientesController
 
     # Only allow a list of trusted parameters through.
     def reserva_params
-      params.require(:reserva).permit(:unidade_id, :veiculo_id, :cliente_id, :tempo_espera, :valor_total, :dt_inicial, :dt_final, :hr_inicial, :hr_final, :pagamento_na_retirada)
+      params.require(:reserva).permit(:unidade_id, :veiculo_id, :cliente_id, :tempo_espera, :valor_total, :dt_inicial, :qt_dias, :hr_inicial, :hr_final, :pagamento_na_retirada)
     end
 
     def set_cliente_cookie

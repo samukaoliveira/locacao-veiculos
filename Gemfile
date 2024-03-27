@@ -44,6 +44,8 @@ gem 'httparty'
 gem 'jquery-mask-plugin', '~> 1.15'
 
 gem 'bcrypt'
+
+gem 'actionmailer'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
